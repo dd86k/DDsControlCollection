@@ -64,7 +64,7 @@
             this.simpleProgressBar1.Size = new System.Drawing.Size(100, 23);
             this.simpleProgressBar1.Step = 10;
             this.simpleProgressBar1.TabIndex = 0;
-            this.simpleProgressBar1.TextDisplay = DDsControlCollection.SimpleProgressBar.TextDisplayType.None;
+            this.simpleProgressBar1.TextDisplay = DDsControlCollection.BarTextDisplayType.None;
             this.simpleProgressBar1.Value = 0;
             // 
             // comboBox1

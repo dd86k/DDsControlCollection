@@ -13,7 +13,7 @@ Feel free to post any issues or suggestions.
 | --- | --- | :-: | :-: | :-: |
 | SimpleProgressBar | `Control` | ✔️ |  |  |
 
-- ## SimpleProgressBar
+## SimpleProgressBar
 
 ### Features:
 

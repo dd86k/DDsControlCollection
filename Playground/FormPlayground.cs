@@ -13,7 +13,7 @@ namespace FancyProgressBar
 
             progressBar1.Style = ProgressBarStyle.Continuous; // Mono
 
-            simpleProgressBar1.TextDisplay = SimpleProgressBar.TextDisplayType.ValueOnMaximum;
+            simpleProgressBar1.TextDisplay = BarTextDisplayType.ValueOnMaximum;
 
         }
 

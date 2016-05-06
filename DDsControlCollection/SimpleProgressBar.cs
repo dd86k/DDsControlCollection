@@ -5,26 +5,25 @@ using System.Windows.Forms;
 
 namespace DDsControlCollection
 {
+
+    public enum BarTextDisplayType
+    {
+        None,
+        ValueOnMaximum, // value / max
+        Pourcentage, // [n]nn[.Nn]%
+        UserDefined
+    }
+        
+    public enum BarOrientation
+    {
+        Horizontal, Vertical
+    }
+
     public class SimpleProgressBar : Control
     {
         // Internal use variables
 
         System.Timers.Timer _marqueeTimer;
-
-        // Enums
-
-        public enum TextDisplayType
-        {
-            None,
-            ValueOnMaximum, // value / max
-            Pourcentage, // [n]nn[.Nn]%
-            UserDefined
-        }
-        
-        public enum Orientation
-        {
-            Horizontal, Vertical
-        }
 
         // Construct
 
@@ -32,7 +31,7 @@ namespace DDsControlCollection
         {
             _maximum = 100;
             _value = 0;
-            _textDisplay = TextDisplayType.None;
+            _textDisplay = BarTextDisplayType.None;
             _font = new Font("Segoi UI", 12);
             _textColor = Color.Black;
 
@@ -119,8 +118,8 @@ namespace DDsControlCollection
             }
         }
 
-        TextDisplayType _textDisplay;
-        public TextDisplayType TextDisplay
+        BarTextDisplayType _textDisplay;
+        public BarTextDisplayType TextDisplay
         {
             get { return _textDisplay; }
             set
@@ -140,9 +139,9 @@ namespace DDsControlCollection
                 _text = value;
 
                 if (string.IsNullOrWhiteSpace(_text))
-                    _textDisplay = TextDisplayType.None;
-                else if (_textDisplay != TextDisplayType.UserDefined)
-                    _textDisplay = TextDisplayType.UserDefined;
+                    _textDisplay = BarTextDisplayType.None;
+                else if (_textDisplay != BarTextDisplayType.UserDefined)
+                    _textDisplay = BarTextDisplayType.UserDefined;
 
                 Invalidate();
             }
@@ -209,15 +208,15 @@ namespace DDsControlCollection
                     break;
             }
 
-            if (_textDisplay != TextDisplayType.None)
+            if (_textDisplay != BarTextDisplayType.None)
             {
                 switch (_textDisplay)
                 {
-                    case TextDisplayType.ValueOnMaximum:
+                    case BarTextDisplayType.ValueOnMaximum:
                         _text = $"{_value} / {_maximum}";
                         break;
 
-                    case TextDisplayType.Pourcentage:
+                    case BarTextDisplayType.Pourcentage:
                         _text = (float)_value / _maximum * 100 + "%";
                         break;
                 }
