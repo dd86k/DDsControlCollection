@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("DDsControlCollection")]
+[assembly: AssemblyTitle("FancyProgressBar")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("DDsControlCollection")]
+[assembly: AssemblyProduct("FancyProgressBar")]
 [assembly: AssemblyCopyright("Copyright ©  2016")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("5e079434-9300-465b-92d2-de6c78b553ef")]
+[assembly: Guid("4183826d-708f-4f77-89c7-86bdeb0a7fba")]
 
 // Version information for an assembly consists of the following four values:
 //

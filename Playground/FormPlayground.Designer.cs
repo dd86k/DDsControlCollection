@@ -30,7 +30,7 @@
         {
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.button1 = new System.Windows.Forms.Button();
-            this.simpleProgressBar1 = new FancyProgressBar.SimpleProgressBar();
+            this.simpleProgressBar1 = new DDsControlCollection.SimpleProgressBar();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.button2 = new System.Windows.Forms.Button();
@@ -64,7 +64,7 @@
             this.simpleProgressBar1.Size = new System.Drawing.Size(100, 23);
             this.simpleProgressBar1.Step = 10;
             this.simpleProgressBar1.TabIndex = 0;
-            this.simpleProgressBar1.TextDisplay = FancyProgressBar.SimpleProgressBar.TextDisplayType.None;
+            this.simpleProgressBar1.TextDisplay = DDsControlCollection.SimpleProgressBar.TextDisplayType.None;
             this.simpleProgressBar1.Value = 0;
             // 
             // comboBox1
@@ -114,7 +114,7 @@
 
         #endregion
 
-        private SimpleProgressBar simpleProgressBar1;
+        private DDsControlCollection.SimpleProgressBar simpleProgressBar1;
         private System.Windows.Forms.ProgressBar progressBar1;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.ComboBox comboBox1;

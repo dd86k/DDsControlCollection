@@ -1,10 +1,11 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
 
-namespace FancyProgressBar
+namespace DDsControlCollection
 {
-    class SimpleProgressBar : Control
+    public class SimpleProgressBar : Control
     {
         // Internal use variables
 
@@ -53,6 +54,7 @@ namespace FancyProgressBar
 
         // Properties without private variables
 
+        [DefaultValue(4)]
         public int Step { get; set; }
 
         // Properties
