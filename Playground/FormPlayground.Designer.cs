@@ -30,10 +30,11 @@
         {
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.button1 = new System.Windows.Forms.Button();
-            this.simpleProgressBar1 = new DDsControlCollection.SimpleProgressBar();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.button2 = new System.Windows.Forms.Button();
+            this.simpleClock1 = new DDsControlCollection.SimpleClock();
+            this.simpleProgressBar1 = new DDsControlCollection.SimpleProgressBar();
             this.SuspendLayout();
             // 
             // progressBar1
@@ -52,20 +53,6 @@
             this.button1.Text = "Perform step";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // simpleProgressBar1
-            // 
-            this.simpleProgressBar1.BackColor = System.Drawing.Color.LightGray;
-            this.simpleProgressBar1.ForeColor = System.Drawing.Color.Green;
-            this.simpleProgressBar1.Location = new System.Drawing.Point(12, 12);
-            this.simpleProgressBar1.Maximum = 100;
-            this.simpleProgressBar1.Minimum = 0;
-            this.simpleProgressBar1.Name = "simpleProgressBar1";
-            this.simpleProgressBar1.Size = new System.Drawing.Size(100, 23);
-            this.simpleProgressBar1.Step = 10;
-            this.simpleProgressBar1.TabIndex = 0;
-            this.simpleProgressBar1.TextDisplay = DDsControlCollection.BarTextDisplayType.None;
-            this.simpleProgressBar1.Value = 0;
             // 
             // comboBox1
             // 
@@ -95,18 +82,41 @@
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
-            // Form1
+            // simpleClock1
+            // 
+            this.simpleClock1.Location = new System.Drawing.Point(12, 184);
+            this.simpleClock1.Name = "simpleClock1";
+            this.simpleClock1.Size = new System.Drawing.Size(100, 100);
+            this.simpleClock1.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.Default;
+            this.simpleClock1.TabIndex = 6;
+            this.simpleClock1.Text = "simpleClock1";
+            this.simpleClock1.Time = new System.DateTime(2016, 5, 6, 19, 29, 16, 825);
+            // 
+            // simpleProgressBar1
+            // 
+            this.simpleProgressBar1.BackColor = System.Drawing.Color.LightGray;
+            this.simpleProgressBar1.BarOrientation = System.Windows.Forms.Orientation.Horizontal;
+            this.simpleProgressBar1.ForeColor = System.Drawing.Color.Green;
+            this.simpleProgressBar1.Location = new System.Drawing.Point(12, 12);
+            this.simpleProgressBar1.Name = "simpleProgressBar1";
+            this.simpleProgressBar1.Size = new System.Drawing.Size(100, 23);
+            this.simpleProgressBar1.Style = System.Windows.Forms.ProgressBarStyle.Blocks;
+            this.simpleProgressBar1.TabIndex = 0;
+            this.simpleProgressBar1.TextColor = System.Drawing.Color.Black;
+            // 
+            // FormPlayground
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(474, 426);
+            this.Controls.Add(this.simpleClock1);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.comboBox2);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.simpleProgressBar1);
-            this.Name = "Form1";
+            this.Name = "FormPlayground";
             this.Text = "Form1";
             this.ResumeLayout(false);
 
@@ -120,6 +130,7 @@
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.ComboBox comboBox2;
         private System.Windows.Forms.Button button2;
+        private DDsControlCollection.SimpleClock simpleClock1;
     }
 }
 

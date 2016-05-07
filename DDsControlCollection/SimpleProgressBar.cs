@@ -3,6 +3,8 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
 
+//TODO: Put SolidBrush in memory?
+
 namespace DDsControlCollection
 {
 
@@ -53,12 +55,13 @@ namespace DDsControlCollection
 
         // Properties without private variables
 
-        [DefaultValue(4)]
+        [DefaultValue(10)]
         public int Step { get; set; }
 
         // Properties
 
         int _maximum;
+        [DefaultValue(100)]
         public int Maximum
         {
             get { return _maximum; }
@@ -74,6 +77,7 @@ namespace DDsControlCollection
         }
 
         int _minimum;
+        [DefaultValue(0)]
         public int Minimum
         {
             get { return _minimum; }
@@ -89,6 +93,7 @@ namespace DDsControlCollection
         }
 
         int _value;
+        [DefaultValue(0)]
         public int Value
         {
             get { return _value; }
@@ -119,6 +124,7 @@ namespace DDsControlCollection
         }
 
         BarTextDisplayType _textDisplay;
+        [DefaultValue(BarTextDisplayType.None)]
         public BarTextDisplayType TextDisplay
         {
             get { return _textDisplay; }
@@ -183,6 +189,11 @@ namespace DDsControlCollection
 
                 Invalidate();
             }
+        }
+
+        void ToggleStyle(ProgressBarStyle style)
+        {
+
         }
 
         // Events

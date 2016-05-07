@@ -11,7 +11,18 @@ Feel free to post any issues or suggestions.
 
 | Control | Based on | Works in Mono | Serializable | Localized |
 | --- | --- | :-: | :-: | :-: |
-| SimpleProgressBar | `Control` | ✔️ |  |  |
+| SimpleProgressBar | `Control` | ✔️ |  | ❌ |
+| SimpleClock | `Control` | ~ |  | ❌ |
+
+Legend
+
+✔️ Yes
+
+~ Yes, but with issues
+
+❌ Cannot be applied
+
+(empty) Not available yet
 
 ## SimpleProgressBar
 
@@ -34,4 +45,15 @@ Feel free to post any issues or suggestions.
 - `ProgressBarStyle` Style (Continuous, Marquee, Blocks)
 - Text AutoSize
 - Serialize
-- Localize
+
+## SimpleClock
+
+- Analog clock
+  - Customizable pens (Frame, seconds, minutes, hours)
+
+### TODO:
+
+- [Mono] Fix not applying -90deg in
+- [Mono] Fix control `Size` being slightly larger
+- More styles (Numeric, binary)
+- Serialize
