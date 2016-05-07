@@ -37,14 +37,14 @@
             // 
             // progressBar1
             // 
-            this.progressBar1.Location = new System.Drawing.Point(12, 41);
+            this.progressBar1.Location = new System.Drawing.Point(12, 89);
             this.progressBar1.Name = "progressBar1";
             this.progressBar1.Size = new System.Drawing.Size(100, 23);
             this.progressBar1.TabIndex = 1;
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(12, 70);
+            this.button1.Location = new System.Drawing.Point(12, 118);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(100, 23);
             this.button1.TabIndex = 2;
@@ -54,7 +54,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(12, 99);
+            this.button2.Location = new System.Drawing.Point(12, 147);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(100, 23);
             this.button2.TabIndex = 5;
@@ -64,13 +64,13 @@
             // 
             // simpleClock1
             // 
-            this.simpleClock1.Location = new System.Drawing.Point(118, 12);
+            this.simpleClock1.Location = new System.Drawing.Point(362, 12);
             this.simpleClock1.Name = "simpleClock1";
             this.simpleClock1.Size = new System.Drawing.Size(100, 100);
             this.simpleClock1.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.Default;
             this.simpleClock1.TabIndex = 6;
             this.simpleClock1.Text = "simpleClock1";
-            this.simpleClock1.Time = new System.DateTime(2016, 5, 7, 0, 34, 47, 377);
+            this.simpleClock1.Time = new System.DateTime(2016, 5, 7, 13, 2, 21, 938);
             // 
             // simpleProgressBar1
             // 

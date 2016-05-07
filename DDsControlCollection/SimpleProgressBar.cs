@@ -5,7 +5,6 @@ using System.Windows.Forms;
 
 namespace DDsControlCollection
 {
-
     public enum BarTextDisplayType
     {
         None,
