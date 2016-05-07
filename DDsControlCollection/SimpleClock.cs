@@ -27,8 +27,7 @@ namespace DDsControlCollection
     public class SimpleClock : Control
     {
         public System.Timers.Timer ClockTimer { get; private set; }
-
-
+        
         public SimpleClock()
         {
             _framePen = new Pen(Color.Black, 4);
@@ -131,21 +130,9 @@ namespace DDsControlCollection
             if (ClockTimer.Enabled)
                 _time = DateTime.Now;
 
-            // sa (Second as angle): (360(deg) / 60(seconds)) = 6
-            // (float)(Radius * Sin(((Seconds * sa) - 90) * Math.PI / 180F)) + Translation
-            // -- Steps --
-            // 1. Get number of steps with - Seconds * sa
-            // 2. Backtrack 90 degrees because a clock's 0 is at the top while
-            // in a chart, 0 is at the right
-            // 3. Complete the section by radian (pi/2) and sin it
-            // 4. Apply scaling (radius)
-            // 5. Apply translation
-            // 6. Coordinate for Y!
-
-            //float s = (float)(_time.Second * 0.1047 - 1.5707);
-            float s = (float)((_time.Second - 15) * 0.1047);
-            float m = (float)(_time.Minute * 0.1047 - 1.5707);
-            float h = (float)((_time.Hour - 3) * 0.5235);
+            float s = (_time.Second - 15) * 0.1047f;
+            float m = (_time.Minute - 15) * 0.1047f;
+            float h = (_time.Hour - 3) * 0.5235f;
             // Scaling (Radius)
             float rw = Width * 0.4f;
             float rh = Height * 0.4f;
@@ -177,16 +164,6 @@ namespace DDsControlCollection
                 tw, th,
                 (float)(rwh * Cos(h) + tw),
                 (float)(rhh * Sin(h) + th));
-
-
         }
-        /*
-         * 
-        float getX(int second)
-        {
-            
-            (float)(radius * Math.Sin((Seconds * sa) * Math.PI / 180F)) + origin.Y
-            return (float)(radius * Math.Cos(angleInDegrees * Math.PI / 180F)) + origin.X;
-        }*/
     }
 }

@@ -11,10 +11,11 @@ namespace FancyProgressBar
         {
             InitializeComponent();
 
+            simpleProgressBar1.ForeColor = Color.Blue;
+
             progressBar1.Style = ProgressBarStyle.Continuous; // Mono
 
             simpleProgressBar1.TextDisplay = BarTextDisplayType.ValueOnMaximum;
-
         }
 
         private void button1_Click(object sender, EventArgs e)

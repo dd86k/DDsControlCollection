@@ -3,8 +3,6 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
 
-//TODO: Put SolidBrush in memory?
-
 namespace DDsControlCollection
 {
 
@@ -35,7 +33,7 @@ namespace DDsControlCollection
             _value = 0;
             _textDisplay = BarTextDisplayType.None;
             _font = new Font("Segoi UI", 12);
-            _textColor = Color.Black;
+            _textColor = new SolidBrush(Color.Black);
 
             Step = 10;
             Size = new Size(100, 23);
@@ -59,6 +57,28 @@ namespace DDsControlCollection
         public int Step { get; set; }
 
         // Properties
+        SolidBrush _foreColor;
+        public new Color ForeColor
+        {
+            get { return base.ForeColor; }
+            set
+            {
+                base.ForeColor = value;
+
+                _foreColor = new SolidBrush(value);
+            }
+        }
+        SolidBrush _backColor;
+        public new Color BackColor
+        {
+            get { return base.BackColor; }
+            set
+            {
+                base.BackColor = value;
+
+                _backColor = new SolidBrush(value);
+            }
+        }
 
         int _maximum;
         [DefaultValue(100)]
@@ -153,13 +173,13 @@ namespace DDsControlCollection
             }
         }
 
-        Color _textColor;
+        SolidBrush _textColor;
         public Color TextColor
         {
-            get { return _textColor; }
+            get { return _textColor.Color; }
             set
             {
-                _textColor = value;
+                _textColor = new SolidBrush(value);
 
                 Invalidate();
             }
@@ -204,7 +224,7 @@ namespace DDsControlCollection
             {
                 case Orientation.Horizontal:
                     {
-                        e.Graphics.FillRectangle(new SolidBrush(ForeColor),
+                        e.Graphics.FillRectangle(_foreColor,
                             0, 0,
                             (_value * Width) / _maximum, Height);
                     }
@@ -212,7 +232,7 @@ namespace DDsControlCollection
 
                 case Orientation.Vertical:
                     {
-                        e.Graphics.FillRectangle(new SolidBrush(ForeColor),
+                        e.Graphics.FillRectangle(_foreColor,
                             0, Height - ((_value * Height) / _maximum),
                             Width, (_value * Height) / _maximum);
                     }
@@ -235,7 +255,7 @@ namespace DDsControlCollection
                 SizeF ts = e.Graphics.MeasureString(_text, _font);
 
                 e.Graphics.DrawString(_text, _font,
-                    new SolidBrush(_textColor),
+                    _textColor,
                     (Width / 2) - (ts.Width / 2),
                     (Height / 2) - (ts.Height / 2));
             }
@@ -243,7 +263,7 @@ namespace DDsControlCollection
 
         protected override void OnPaintBackground(PaintEventArgs e)
         {
-            e.Graphics.FillRectangle(new SolidBrush(BackColor),
+            e.Graphics.FillRectangle(_backColor,
                 e.ClipRectangle);
         }
     }
