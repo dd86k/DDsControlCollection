@@ -37,6 +37,12 @@
     <Reference Include="System.Windows.Forms" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="PrettyListBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="PrettyTreeView.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SimpleClock.cs">
       <SubType>Component</SubType>
