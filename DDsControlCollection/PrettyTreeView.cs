@@ -1,14 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Drawing;
-using System.Drawing.Drawing2D;
-using System.Windows.Forms;
-using System.Collections;
+﻿using System.ComponentModel;
 using System.Diagnostics;
-using System.ComponentModel;
+using System.Drawing;
+using System.Windows.Forms;
 
 namespace DDsControlCollection
 {
@@ -16,6 +9,7 @@ namespace DDsControlCollection
     {
         public PrettyTreeView()
         {
+            _foreColor = new SolidBrush(Color.Black);
             _textPaddingVertical = 2;
             _textPaddingHorizontal = 2;
             _nodes = new TreeNode().Nodes;

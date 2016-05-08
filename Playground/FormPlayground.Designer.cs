@@ -33,10 +33,10 @@
             this.button2 = new System.Windows.Forms.Button();
             this.treeView1 = new System.Windows.Forms.TreeView();
             this.listBox1 = new System.Windows.Forms.ListBox();
+            this.prettyListBox2 = new DDsControlCollection.PrettyListBox();
             this.prettyTreeView1 = new DDsControlCollection.PrettyTreeView();
-            this.simpleClock1 = new DDsControlCollection.SimpleClock();
             this.simpleProgressBar1 = new DDsControlCollection.SimpleProgressBar();
-            this.prettyListBox1 = new DDsControlCollection.PrettyListBox();
+            this.simpleClock1 = new DDsControlCollection.SimpleClock();
             this.SuspendLayout();
             // 
             // progressBar1
@@ -85,9 +85,21 @@
             this.listBox1.Size = new System.Drawing.Size(170, 95);
             this.listBox1.TabIndex = 9;
             // 
+            // prettyListBox2
+            // 
+            this.prettyListBox2.BackColor = System.Drawing.Color.White;
+            this.prettyListBox2.FocusColor = System.Drawing.Color.Coral;
+            this.prettyListBox2.Location = new System.Drawing.Point(188, 267);
+            this.prettyListBox2.Name = "prettyListBox2";
+            this.prettyListBox2.Size = new System.Drawing.Size(159, 95);
+            this.prettyListBox2.TabIndex = 10;
+            this.prettyListBox2.Text = "prettyListBox2";
+            this.prettyListBox2.TextPaddingHorizontal = 2;
+            this.prettyListBox2.TextPaddingVertical = 2;
+            // 
             // prettyTreeView1
             // 
-            this.prettyTreeView1.BackColor = System.Drawing.Color.LightGray;
+            this.prettyTreeView1.BackColor = System.Drawing.Color.White;
             this.prettyTreeView1.Location = new System.Drawing.Point(188, 142);
             this.prettyTreeView1.Name = "prettyTreeView1";
             this.prettyTreeView1.SelectedNode = null;
@@ -96,16 +108,6 @@
             this.prettyTreeView1.Text = "prettyTreeView1";
             this.prettyTreeView1.TextPaddingHorizontal = 2;
             this.prettyTreeView1.TextPaddingVertical = 2;
-            // 
-            // simpleClock1
-            // 
-            this.simpleClock1.Location = new System.Drawing.Point(362, 12);
-            this.simpleClock1.Name = "simpleClock1";
-            this.simpleClock1.Size = new System.Drawing.Size(100, 100);
-            this.simpleClock1.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.Default;
-            this.simpleClock1.TabIndex = 6;
-            this.simpleClock1.Text = "simpleClock1";
-            this.simpleClock1.Time = new System.DateTime(2016, 5, 7, 19, 29, 33, 105);
             // 
             // simpleProgressBar1
             // 
@@ -119,27 +121,40 @@
             this.simpleProgressBar1.TabIndex = 0;
             this.simpleProgressBar1.TextColor = System.Drawing.Color.Black;
             // 
-            // prettyListBox1
+            // simpleClock1
             // 
-            this.prettyListBox1.BackColor = System.Drawing.Color.LightGray;
-            this.prettyListBox1.Location = new System.Drawing.Point(188, 267);
-            this.prettyListBox1.Name = "prettyListBox1";
-            this.prettyListBox1.Size = new System.Drawing.Size(159, 95);
-            this.prettyListBox1.TabIndex = 10;
-            this.prettyListBox1.Text = "prettyListBox1";
-            this.prettyListBox1.TextPaddingHorizontal = 2;
-            this.prettyListBox1.TextPaddingVertical = 2;
+            this.simpleClock1.FrameColor = System.Drawing.Color.Black;
+            this.simpleClock1.FrameWidth = 4F;
+            this.simpleClock1.HourNeedlePen = System.Drawing.Color.Black;
+            this.simpleClock1.HourNeedleWidth = 3F;
+            this.simpleClock1.Location = new System.Drawing.Point(362, 12);
+            this.simpleClock1.MiddlePointColor = System.Drawing.Color.Black;
+            this.simpleClock1.MinuteNeedleColor = System.Drawing.Color.Black;
+            this.simpleClock1.MinuteNeedleWidth = 3F;
+            this.simpleClock1.Name = "simpleClock1";
+            this.simpleClock1.SecondNeedleColor = System.Drawing.Color.Red;
+            this.simpleClock1.SecondNeedleWidth = 2F;
+            this.simpleClock1.ShowFrame = true;
+            this.simpleClock1.ShowHourNeedle = true;
+            this.simpleClock1.ShowMiddlePoint = true;
+            this.simpleClock1.ShowMinuteNeedle = true;
+            this.simpleClock1.ShowSecondNeedle = true;
+            this.simpleClock1.Size = new System.Drawing.Size(100, 100);
+            this.simpleClock1.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
+            this.simpleClock1.Style = DDsControlCollection.ClockStyle.Analog;
+            this.simpleClock1.TabIndex = 11;
+            this.simpleClock1.Text = "simpleClock1";
             // 
             // FormPlayground
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(474, 426);
-            this.Controls.Add(this.prettyListBox1);
+            this.Controls.Add(this.simpleClock1);
+            this.Controls.Add(this.prettyListBox2);
             this.Controls.Add(this.listBox1);
             this.Controls.Add(this.prettyTreeView1);
             this.Controls.Add(this.treeView1);
-            this.Controls.Add(this.simpleClock1);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.progressBar1);
@@ -156,11 +171,11 @@
         private System.Windows.Forms.ProgressBar progressBar1;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
-        private DDsControlCollection.SimpleClock simpleClock1;
         private System.Windows.Forms.TreeView treeView1;
         private DDsControlCollection.PrettyTreeView prettyTreeView1;
         private System.Windows.Forms.ListBox listBox1;
-        private DDsControlCollection.PrettyListBox prettyListBox1;
+        private DDsControlCollection.PrettyListBox prettyListBox2;
+        private DDsControlCollection.SimpleClock simpleClock1;
     }
 }
 

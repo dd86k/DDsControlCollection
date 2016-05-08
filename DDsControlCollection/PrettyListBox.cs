@@ -1,13 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Drawing;
-
-using System.Drawing.Drawing2D;
 using System.ComponentModel;
+using System.Drawing;
+using System.Windows.Forms;
 
 namespace DDsControlCollection
 {
@@ -15,20 +9,24 @@ namespace DDsControlCollection
     {
         public PrettyListBox()
         {
+            _foreColor = new SolidBrush(Color.Black);
+            _focusColor = new SolidBrush(Color.Coral);
             _textPaddingVertical = 2;
             _textPaddingHorizontal = 2;
-            _collection = new List<object>();
-            //_nodes.Clear();
+            _index = -1;
+
+            Size = new Size(200, 300);
+            BackColor = Color.White;
+            Items = new ListBox.ObjectCollection(new ListBox());
         }
 
         int _textHeight;
         int _itemHeight;
-
-        ICollection<object> _collection;
+        
         public ListBox.ObjectCollection Items
         {
-            //TODO: fix
-            get { return (ListBox.ObjectCollection)_collection.Cast< ListBox.ObjectCollection>(); }
+            get;
+            private set;
         }
 
         // I did not wanted to use Padding because 
@@ -58,34 +56,44 @@ namespace DDsControlCollection
 
         object _selectedItem;
         [Browsable(false)]
+        [ReadOnly(true)]
         public object SelectedItem
         {
             get { return _selectedItem; }
             set
             {
-                if (!Items.Contains(value))
-                    throw new ArgumentOutOfRangeException();
+                if (Items.Count > 0)
+                {
+                    if (!Items.Contains(value))
+                        throw new ArgumentOutOfRangeException();
 
-                _selectedItem = value;
+                    _selectedItem = value;
 
-                Invalidate();
+                    Invalidate();
+                }
             }
         }
+
         int _index;
+        [Browsable(false)]
+        [ReadOnly(true)]
         public int SelectedIndex
         {
             get { return _index; }
             set
             {
-                if (value > _collection.Count || value < -1)
+                if (Items.Count > 0)
+                {
+                    if (value > Items.Count || value < -1)
                     throw new IndexOutOfRangeException();
 
-                if (value == -1)
-                    _index = -1;
+                    if (value == -1)
+                        _index = -1;
 
-                _selectedItem = _collection.ElementAt(_index = value);
+                    _selectedItem = Items[_index = value];
 
-                Invalidate();
+                    Invalidate();
+                }
             }
         }
 
@@ -104,7 +112,7 @@ namespace DDsControlCollection
         SolidBrush _foreColor;
         public new Color ForeColor
         {
-            get { return _focusColor.Color; }
+            get { return _foreColor.Color; }
             set
             {
                 _foreColor = new SolidBrush(value);
@@ -115,9 +123,12 @@ namespace DDsControlCollection
 
         protected override void OnMouseDown(MouseEventArgs e)
         {
-            _selectedItem = Items[e.Y / _itemHeight];
+            if (e.Y < Items.Count * _itemHeight)
+            {
+                _selectedItem = Items[_index = e.Y / _itemHeight];
 
-            Invalidate();
+                Invalidate();
+            }
 
             base.OnMouseDown(e);
         }
@@ -128,18 +139,28 @@ namespace DDsControlCollection
             _textHeight = (int)e.Graphics.MeasureString("Aa", Font).Height;
             _itemHeight = _textHeight + (_textPaddingVertical * 2);
 
-            for (int i = 0; i < _collection.Count; i++)
+            for (int i = 0; i < Items.Count; i++)
             {
                 if (Items[i] == _selectedItem)
+                {
                     e.Graphics.FillRectangle(_focusColor,
                         0, y,
                         Width, _itemHeight);
-
-                e.Graphics.DrawString(Items[i].ToString(),
-                    Font,
-                    _foreColor,
-                    _textPaddingHorizontal + _textPaddingHorizontal,
-                    y + _textPaddingVertical);
+                    
+                    e.Graphics.DrawString(Items[i].ToString(),
+                        Font,
+                        _foreColor.Negate(),
+                        _textPaddingHorizontal + _textPaddingHorizontal,
+                        y + _textPaddingVertical);
+                }
+                else
+                {
+                    e.Graphics.DrawString(Items[i].ToString(),
+                        Font,
+                        _foreColor,
+                        _textPaddingHorizontal + _textPaddingHorizontal,
+                        y + _textPaddingVertical);
+                }
 
                 y += _itemHeight;
             }

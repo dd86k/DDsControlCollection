@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Drawing;
 using System.Windows.Forms;
 using DDsControlCollection;
 
@@ -23,11 +22,11 @@ namespace FancyProgressBar
             prettyTreeView1.Nodes[0].Nodes.Add("child");
             prettyTreeView1.Nodes.Add("test1");
 
-            listBox1.Items.Add("Hello");
-            listBox1.Items.Add("Hello1");
+            listBox1.Items.Add("Item");
+            listBox1.Items.Add("Selected");
             
-            prettyListBox1.Items.Add("Hello");
-            prettyListBox1.Items.Add("Hello1");
+            prettyListBox2.Items.Add("Item");
+            prettyListBox2.Items.Add("Selected");
         }
 
         private void button1_Click(object sender, EventArgs e)
