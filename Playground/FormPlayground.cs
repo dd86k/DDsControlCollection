@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 using DDsControlCollection;
+using System.Drawing;
 
 namespace FancyProgressBar
 {
@@ -11,8 +12,10 @@ namespace FancyProgressBar
             InitializeComponent();
 
             progressBar1.Style = ProgressBarStyle.Continuous; // Mono
+            progressBar1.ForeColor = Color.Red;
 
-            simpleProgressBar1.TextDisplay = BarTextDisplayType.ValueOnMaximum;
+            simpleProgressBar1.TextDisplay = BarTextDisplayType.Pourcentage;
+            simpleProgressBar1.ForeColor = Color.Red;
 
             treeView1.Nodes.Add("test");
             treeView1.Nodes[0].Nodes.Add("child");

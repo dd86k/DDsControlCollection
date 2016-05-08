@@ -1,35 +1,42 @@
 # DDsControlCollection
-## Simple collection of controls for Windows.Forms
+## Collection of components for Windows.Forms
 
 A bunch of WinForm controls that I'll be doing here and then.
 
 I started this because I wanted a bit more from `ProgressBar`, and I disliked how `ProgressBar` behaved (in Windows).
 
+Also I plan to use those in future projects.
+
+Mostly still in development!
+
 Feel free to post any issues or suggestions.
 
-### Controls
+MIT License.
+
+## Controls
 
 | Control | Based on | Works in Mono | Serializable | Localized |
 | --- | --- | :-: | :-: | :-: |
 | SimpleProgressBar | `Control` | ✔️ |  | ❌ |
-| SimpleClock | `Control` | ~ |  | ❌ |
+| SimpleClock | `Control` | ✔️ |  | ❌ |
+| PrettyListBox | `Control` | ✔️ |  | ❌ |
 
-Legend
+**Legend**
 
 ✔️ Yes
 
 ~ Yes, but with issues
 
-❌ Cannot be applied
+❌ Not applicable
 
 (empty) Not available yet
 
 ## SimpleProgressBar
 
-### Features:
+Goal: A compatible `ProgressBar` with some WPF properties and extra features.
 
-- Mostly compatible with `ProgressBar`
-- Full ForeColor and BackColor support.
+So far:
+- ForeColor and BackColor support.
 - Vertical and horizontal via `BarOrientation`
 - Text via `Text`
   - Custom font and size
@@ -40,20 +47,21 @@ Legend
     - Pourcentage (NN%)
     - User defined text
 
-### TODO:
-
-- `ProgressBarStyle` Style (Continuous, Marquee, Blocks)
-- Text AutoSize
-- Serialize
-
 ## SimpleClock
 
+Goal: A simple customizable clock with custom properties.
+
+So far:
 - Analog clock
-  - Customizable pens (Frame, seconds, minutes, hours)
+  - Customizable colors
+  - Customizable widths
 
-### TODO:
+## PrettyListBox
 
-- [Mono] Fix not applying -90deg in
-- [Mono] Fix control `Size` being slightly larger
-- More styles (Numeric, binary)
-- Serialize
+Goal: A prettier, customizable, compatible `ListBox`.
+
+So far:
+- Custom focus color
+- Item padding
+- Auto-invert selected item
+

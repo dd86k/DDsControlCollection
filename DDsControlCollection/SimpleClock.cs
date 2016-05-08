@@ -268,14 +268,15 @@ namespace DDsControlCollection
             {
                 case ClockStyle.Analog:
                     {
+                        // Angles
                         float sn = (_time.Second - 15) * 0.1047f;
                         float mn = (_time.Minute - 15) * 0.1047f;
                         float hn = (_time.Hour - 3) * 0.5235f;
                         // Scaling (Radius)
                         float rw = w * 0.4f;
                         float rh = h * 0.4f;
-                        float rwh = w * 0.3f;
-                        float rhh = h * 0.3f;
+                        float rwh = w * 0.28f;
+                        float rhh = h * 0.28f;
                         // Translation
                         float tw = w / 2;
                         float th = h / 2;
