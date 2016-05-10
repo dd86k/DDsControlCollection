@@ -125,12 +125,13 @@ namespace DDsControlCollection
         {
             base.OnMouseDown(e);
 
-            if (e.Y < Items.Count * _itemHeight)
-            {
-                _selectedItem = Items[_index = e.Y / _itemHeight];
+            if (e.Button == MouseButtons.Left)
+                if (e.Y < Items.Count * _itemHeight)
+                {
+                    _selectedItem = Items[_index = e.Y / _itemHeight];
 
-                Invalidate();
-            }
+                    Invalidate();
+                }
         }
 
         protected override void OnPaint(PaintEventArgs e)
