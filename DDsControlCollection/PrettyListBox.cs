@@ -85,7 +85,7 @@ namespace DDsControlCollection
                 if (Items.Count > 0)
                 {
                     if (value > Items.Count || value < -1)
-                    throw new IndexOutOfRangeException();
+                        throw new IndexOutOfRangeException();
 
                     if (value == -1)
                         _index = -1;
@@ -123,14 +123,14 @@ namespace DDsControlCollection
 
         protected override void OnMouseDown(MouseEventArgs e)
         {
+            base.OnMouseDown(e);
+
             if (e.Y < Items.Count * _itemHeight)
             {
                 _selectedItem = Items[_index = e.Y / _itemHeight];
 
                 Invalidate();
             }
-
-            base.OnMouseDown(e);
         }
 
         protected override void OnPaint(PaintEventArgs e)
