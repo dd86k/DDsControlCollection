@@ -11,21 +11,23 @@ Mostly still in development!
 
 Feel free to post any issues or suggestions.
 
-MIT License.
+[MIT License](License)
 
 ## Controls
 
-| Control | Based on | Works in Mono | Serializable | Localized |
+| Control | Based on | Works in Mono |
 | --- | --- | :-: | :-: | :-: |
-| SimpleProgressBar | `Control` | ✔️ |  | ❌ |
-| SimpleClock | `Control` | ✔️ |  | ❌ |
-| PrettyListBox | `Control` | ✔️ |  | ❌ |
+| SimpleProgressBar | `Control` | ✔️ |
+| SimpleClock | `Control` | ✔️ |
+| PrettyListBox | `Panel` | ️️❓ |
 
 **Legend**
 
 ✔️ Yes
 
-~ Yes, but with issues
+~ Yes, but with some issues
+
+❓ Testing needed
 
 ❌ Not applicable
 
@@ -37,7 +39,9 @@ Goal: A compatible `ProgressBar` with some WPF properties and extra features.
 
 So far:
 - ForeColor and BackColor support.
+- Padding support.
 - Vertical and horizontal via `BarOrientation`
+  - Invertion is possible
 - Text via `Text`
   - Custom font and size
   - Text color via `TextColor`

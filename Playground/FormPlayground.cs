@@ -15,7 +15,6 @@ namespace FancyProgressBar
             progressBar1.ForeColor = Color.Red;
 
             simpleProgressBar1.TextDisplay = BarTextDisplayType.Pourcentage;
-            simpleProgressBar1.ForeColor = Color.Red;
 
             treeView1.Nodes.Add("test");
             treeView1.Nodes[0].Nodes.Add("child");

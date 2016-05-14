@@ -5,7 +5,7 @@ using System.Windows.Forms;
 
 namespace DDsControlCollection
 {
-    public class PrettyListBox : Control
+    public class PrettyListBox : Panel
     {
         public PrettyListBox()
         {
@@ -15,6 +15,9 @@ namespace DDsControlCollection
             _textPaddingHorizontal = 2;
             _index = -1;
 
+            AutoScroll = true;
+            AutoScrollMinSize = new Size(200, 205);
+            VerticalScroll.Enabled = false;
             Size = new Size(200, 300);
             BackColor = Color.White;
             Items = new ListBox.ObjectCollection(new ListBox());
@@ -133,9 +136,14 @@ namespace DDsControlCollection
                     Invalidate();
                 }
         }
-
+        
         protected override void OnPaint(PaintEventArgs e)
         {
+            e.Graphics.TranslateTransform(
+                AutoScrollPosition.X,
+                AutoScrollPosition.Y
+            );
+
             int y = 0;
             _textHeight = (int)e.Graphics.MeasureString("Aa", Font).Height;
             _itemHeight = _textHeight + (_textPaddingVertical * 2);

@@ -12,17 +12,12 @@ namespace DDsControlCollection
         Pourcentage, // [n]nn[.Nn]%
         UserDefined
     }
-        
-    public enum BarOrientation
-    {
-        Horizontal, Vertical
-    }
 
     public class SimpleProgressBar : Control
     {
         // Internal use variables
 
-        System.Timers.Timer _marqueeTimer;
+        public System.Timers.Timer _marqueeTimer { get; private set; }
 
         // Construct
 
@@ -33,11 +28,13 @@ namespace DDsControlCollection
             _textDisplay = BarTextDisplayType.None;
             _font = new Font("Segoi UI", 12);
             _textColor = new SolidBrush(Color.Black);
-
+            _borderPen = new Pen(Color.DarkGray, 1);
+            
+            Padding = new Padding(2);
             Step = 10;
             Size = new Size(100, 23);
             ForeColor = Color.Green;
-            BackColor = Color.LightGray;
+            BackColor = Color.WhiteSmoke;
         }
 
         // Methods
@@ -56,15 +53,38 @@ namespace DDsControlCollection
         public int Step { get; set; }
 
         // Properties
+        
+        Pen _borderPen;
+        [ReadOnly(true)]
+        public Color BorderColor
+        {
+            get { return _borderPen.Color; }
+            set
+            {
+                _borderPen.Color = value;
+
+                Invalidate();
+            }
+        }
+        [DefaultValue(1)]
+        public float BorderWidth
+        {
+            get { return _borderPen.Width; }
+            set
+            {
+                _borderPen.Width = value;
+
+                Invalidate();
+            }
+        }
+
         SolidBrush _foreColor;
         public new Color ForeColor
         {
             get { return base.ForeColor; }
             set
             {
-                base.ForeColor = value;
-
-                _foreColor = new SolidBrush(value);
+                _foreColor = new SolidBrush(base.ForeColor = value);
             }
         }
         SolidBrush _backColor;
@@ -73,9 +93,7 @@ namespace DDsControlCollection
             get { return base.BackColor; }
             set
             {
-                base.BackColor = value;
-
-                _backColor = new SolidBrush(value);
+                _backColor = new SolidBrush(base.BackColor = value);
             }
         }
 
@@ -118,19 +136,19 @@ namespace DDsControlCollection
             get { return _value; }
             set
             {
-                if (value > _maximum)
-                    throw new ArgumentOutOfRangeException("Value is higher than maximum.");
-
-                if (value < _minimum)
-                    throw new ArgumentOutOfRangeException("Value is lower than minimum.");
-
-                _value = value;
+                if (value <= _maximum)
+                    _value = value;
+                else if (value > _maximum)
+                    throw new ArgumentOutOfRangeException("Value is higher than Maximum.");
+                else if (value < _minimum)
+                    throw new ArgumentOutOfRangeException("Value is lower than Minimum.");
 
                 Invalidate();
             }
         }
 
         Font _font;
+        [Description("Font to use when a BarTextDisplayType other than None is used.")]
         public new Font Font
         {
             get { return _font; }
@@ -196,6 +214,18 @@ namespace DDsControlCollection
             }
         }
 
+        bool _invertOrientation;
+        public bool InvertOrientation
+        {
+            get { return _invertOrientation; }
+            set
+            {
+                _invertOrientation = value;
+
+                Invalidate();
+            }
+        }
+
         ProgressBarStyle _style;
         public ProgressBarStyle Style
         {
@@ -223,17 +253,27 @@ namespace DDsControlCollection
             {
                 case Orientation.Horizontal:
                     {
-                        e.Graphics.FillRectangle(_foreColor,
-                            0, 0,
-                            (_value * Width) / _maximum, Height);
+                        if (_invertOrientation)
+                            e.Graphics.FillRectangle(_foreColor,
+                                (Width - ((_value * Width) / _maximum)) + Padding.Left, Padding.Top,
+                                ((_value * Width) / _maximum) - Padding.Horizontal, Height - Padding.Vertical);
+                        else
+                            e.Graphics.FillRectangle(_foreColor,
+                                Padding.Left, Padding.Top,
+                                ((_value * Width) / _maximum) - Padding.Horizontal, Height - Padding.Vertical);
                     }
                     break;
 
                 case Orientation.Vertical:
                     {
-                        e.Graphics.FillRectangle(_foreColor,
-                            0, Height - ((_value * Height) / _maximum),
-                            Width, (_value * Height) / _maximum);
+                        if (_invertOrientation)
+                            e.Graphics.FillRectangle(_foreColor,
+                                Padding.Left, Padding.Top,
+                                Width - Padding.Horizontal, ((_value * Height) / _maximum) - Padding.Vertical);
+                        else
+                            e.Graphics.FillRectangle(_foreColor,
+                                Padding.Left, (Height - ((_value * Height) / _maximum)) + Padding.Top,
+                                Width - Padding.Horizontal, ((_value * Height) / _maximum) - Padding.Vertical);
                     }
                     break;
             }
@@ -262,8 +302,26 @@ namespace DDsControlCollection
 
         protected override void OnPaintBackground(PaintEventArgs e)
         {
-            e.Graphics.FillRectangle(_backColor,
-                e.ClipRectangle);
+            e.Graphics.FillRectangle(_backColor, e.ClipRectangle);
+
+            if (_borderPen.Width > 0)
+            {
+                // Top
+                e.Graphics.DrawLine(_borderPen,
+                    0, 0, Width, 0);
+
+                // Bottom
+                e.Graphics.DrawLine(_borderPen,
+                    0, Height - 1, Width - 1, Height - 1);
+
+                // Left
+                e.Graphics.DrawLine(_borderPen,
+                    0, 0, 0, Height);
+
+                // Right
+                e.Graphics.DrawLine(_borderPen,
+                    Width - 1, 0, Width - 1, Height - 1);
+            }
         }
     }
 }
