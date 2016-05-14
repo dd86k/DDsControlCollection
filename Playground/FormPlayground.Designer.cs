@@ -33,10 +33,10 @@
             this.button2 = new System.Windows.Forms.Button();
             this.treeView1 = new System.Windows.Forms.TreeView();
             this.listBox1 = new System.Windows.Forms.ListBox();
+            this.simpleClock1 = new DDsControlCollection.SimpleClock();
             this.prettyListBox2 = new DDsControlCollection.PrettyListBox();
             this.prettyTreeView1 = new DDsControlCollection.PrettyTreeView();
             this.simpleProgressBar1 = new DDsControlCollection.SimpleProgressBar();
-            this.simpleClock1 = new DDsControlCollection.SimpleClock();
             this.SuspendLayout();
             // 
             // progressBar1
@@ -85,8 +85,34 @@
             this.listBox1.Size = new System.Drawing.Size(170, 95);
             this.listBox1.TabIndex = 9;
             // 
+            // simpleClock1
+            // 
+            this.simpleClock1.FrameColor = System.Drawing.Color.Black;
+            this.simpleClock1.FrameWidth = 4F;
+            this.simpleClock1.HourNeedlePen = System.Drawing.Color.Black;
+            this.simpleClock1.HourNeedleWidth = 3F;
+            this.simpleClock1.Location = new System.Drawing.Point(362, 12);
+            this.simpleClock1.MiddlePointColor = System.Drawing.Color.Black;
+            this.simpleClock1.MinuteNeedleColor = System.Drawing.Color.Black;
+            this.simpleClock1.MinuteNeedleWidth = 3F;
+            this.simpleClock1.Name = "simpleClock1";
+            this.simpleClock1.SecondNeedleColor = System.Drawing.Color.Red;
+            this.simpleClock1.SecondNeedleWidth = 2F;
+            this.simpleClock1.ShowFrame = true;
+            this.simpleClock1.ShowHourNeedle = true;
+            this.simpleClock1.ShowMiddlePoint = true;
+            this.simpleClock1.ShowMinuteNeedle = true;
+            this.simpleClock1.ShowSecondNeedle = true;
+            this.simpleClock1.Size = new System.Drawing.Size(100, 100);
+            this.simpleClock1.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
+            this.simpleClock1.Style = DDsControlCollection.ClockStyle.Analog;
+            this.simpleClock1.TabIndex = 11;
+            this.simpleClock1.Text = "simpleClock1";
+            // 
             // prettyListBox2
             // 
+            this.prettyListBox2.AutoScroll = true;
+            this.prettyListBox2.AutoScrollMinSize = new System.Drawing.Size(200, 205);
             this.prettyListBox2.BackColor = System.Drawing.Color.White;
             this.prettyListBox2.FocusColor = System.Drawing.Color.Coral;
             this.prettyListBox2.Location = new System.Drawing.Point(188, 267);
@@ -111,39 +137,18 @@
             // 
             // simpleProgressBar1
             // 
-            this.simpleProgressBar1.BackColor = System.Drawing.Color.LightGray;
+            this.simpleProgressBar1.BackColor = System.Drawing.Color.WhiteSmoke;
             this.simpleProgressBar1.BarOrientation = System.Windows.Forms.Orientation.Horizontal;
+            this.simpleProgressBar1.BorderWidth = 1F;
             this.simpleProgressBar1.ForeColor = System.Drawing.Color.Green;
+            this.simpleProgressBar1.InvertOrientation = false;
             this.simpleProgressBar1.Location = new System.Drawing.Point(12, 12);
             this.simpleProgressBar1.Name = "simpleProgressBar1";
+            this.simpleProgressBar1.Padding = new System.Windows.Forms.Padding(2);
             this.simpleProgressBar1.Size = new System.Drawing.Size(100, 23);
             this.simpleProgressBar1.Style = System.Windows.Forms.ProgressBarStyle.Blocks;
             this.simpleProgressBar1.TabIndex = 0;
             this.simpleProgressBar1.TextColor = System.Drawing.Color.Black;
-            // 
-            // simpleClock1
-            // 
-            this.simpleClock1.FrameColor = System.Drawing.Color.Black;
-            this.simpleClock1.FrameWidth = 4F;
-            this.simpleClock1.HourNeedlePen = System.Drawing.Color.Black;
-            this.simpleClock1.HourNeedleWidth = 3F;
-            this.simpleClock1.Location = new System.Drawing.Point(362, 12);
-            this.simpleClock1.MiddlePointColor = System.Drawing.Color.Black;
-            this.simpleClock1.MinuteNeedleColor = System.Drawing.Color.Black;
-            this.simpleClock1.MinuteNeedleWidth = 3F;
-            this.simpleClock1.Name = "simpleClock1";
-            this.simpleClock1.SecondNeedleColor = System.Drawing.Color.Red;
-            this.simpleClock1.SecondNeedleWidth = 2F;
-            this.simpleClock1.ShowFrame = true;
-            this.simpleClock1.ShowHourNeedle = true;
-            this.simpleClock1.ShowMiddlePoint = true;
-            this.simpleClock1.ShowMinuteNeedle = true;
-            this.simpleClock1.ShowSecondNeedle = true;
-            this.simpleClock1.Size = new System.Drawing.Size(100, 100);
-            this.simpleClock1.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
-            this.simpleClock1.Style = DDsControlCollection.ClockStyle.Analog;
-            this.simpleClock1.TabIndex = 11;
-            this.simpleClock1.Text = "simpleClock1";
             // 
             // FormPlayground
             // 

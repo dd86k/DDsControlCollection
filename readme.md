@@ -35,13 +35,14 @@ Feel free to post any issues or suggestions.
 
 ## SimpleProgressBar
 
-Goal: A compatible `ProgressBar` with some WPF properties and extra features.
+Goal: A mostly-compatible `ProgressBar` with some WPF properties and extra features.
 
 So far:
 - ForeColor and BackColor support.
 - Padding support.
+- Border property.
 - Vertical and horizontal via `BarOrientation`
-  - Invertion is possible
+  - Inversion is possible
 - Text via `Text`
   - Custom font and size
   - Text color via `TextColor`
