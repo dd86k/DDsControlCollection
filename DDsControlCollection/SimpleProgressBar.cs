@@ -100,10 +100,20 @@ namespace DDsControlCollection
         
         public void PerformStep()
         {
-            if (_value + Step <= _maximum)
-                Value += Step;
+            if (_style != ProgressBarStyle.Marquee)
+            {
+                if (_value + Step <= _maximum)
+                    Value += Step;
+                else
+                    Value += _maximum - _value;
+            }
             else
-                Value += _maximum - _value;
+            {
+                if (_value + Step <= _maximum)
+                    _value += Step;
+                else
+                    _value += _maximum - _value;
+            }
         }
 
         // Properties without private variables
@@ -280,6 +290,19 @@ namespace DDsControlCollection
             set
             {
                 _invertOrientation = value;
+
+                Invalidate();
+            }
+        }
+        public override RightToLeft RightToLeft
+        {
+            get
+            {
+                return _invertOrientation ? RightToLeft.Yes : RightToLeft.No;
+            }
+            set
+            {
+                _invertOrientation = value == RightToLeft.Yes;
 
                 Invalidate();
             }

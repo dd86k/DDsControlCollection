@@ -41,21 +41,21 @@ Goal: A mostly-compatible `ProgressBar` with some WPF properties and extra featu
 
 So far:
 - ForeColor and BackColor support.
-- Padding support.
-- Border property.
-- Vertical and horizontal via `BarOrientation`
-  - Inversion is possible
-- Text via `Text`
-  - Custom font and size
-  - Text color via `TextColor`
-  - Text types via `TextDisplay`
-    - `None` (Hidden)
-    - `ValueOnmaximum` Value / Maximum
-    - `Pourcentage` Number%
-    - `UserDefined`
-- Marquee style
-  - Bouncy
-  - Slide
+- Padding support via `Padding`.
+- Border property via `BorderWidth` and `BorderColor`.
+- Vertical and horizontal orientations via `BarOrientation`.
+  - Inversion is possible via `InvertOrientation` (`RightToLeft` also applies).
+- Text via `Text`.
+  - Custom font and size.
+  - Text color via `TextColor`.
+  - Text types via `TextDisplay`.
+    - `None` - Hidden
+    - `ValueOnmaximum` - Value / Maximum
+    - `Pourcentage` - Number%
+    - `UserDefined` - Manually defined
+- Marquee style via `MarqueeAnimation`.
+  - `Bouncy` - Block bouncing back and forth.
+  - `Slide` - Sliding animation like the one found in Windows.
 
 ## SimpleClock
 
