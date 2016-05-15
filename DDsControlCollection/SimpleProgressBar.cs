@@ -13,11 +13,25 @@ namespace DDsControlCollection
         UserDefined
     }
 
+    public enum MarqueeAnimation
+    {
+        Bouncy, Slide
+    }
+
     public class SimpleProgressBar : Control
     {
-        // Internal use variables
+        // Marquee stuff
+        //TODO: maybe wrap this all in a class (non-static)
 
-        public System.Timers.Timer _marqueeTimer { get; private set; }
+        public System.Timers.Timer MarqueeTimer { get; private set; }
+        enum MarqueeDirection { Right, Left, Up, Down }
+        MarqueeDirection _marqueeDirection;
+        int _marqueeWidth; // public
+        int _marqueeSpeed; // public
+        int _marqueePosition;
+        //TODO: MarqueeAnimationType (enum)
+        //TOPO: MarqueeAnimation (property) -> timer event
+        public MarqueeAnimation MarqueeAnimation { get; set; }
 
         // Construct
 
@@ -29,12 +43,57 @@ namespace DDsControlCollection
             _font = new Font("Segoi UI", 12);
             _textColor = new SolidBrush(Color.Black);
             _borderPen = new Pen(Color.DarkGray, 1);
-            
+
+            _style = ProgressBarStyle.Continuous;
             Padding = new Padding(2);
             Step = 10;
             Size = new Size(100, 23);
             ForeColor = Color.Green;
             BackColor = Color.WhiteSmoke;
+
+            DoubleBuffered = true;
+
+            // Marquee stuff
+            _marqueeWidth = 40;
+            //_marqueePosition = 0;
+            _marqueeSpeed = 2;
+            _marqueeDirection = MarqueeDirection.Right;
+            MarqueeTimer = new System.Timers.Timer(25);
+            MarqueeTimer.Elapsed += (s, e) =>
+            {
+                switch (MarqueeAnimation)
+                {
+                    case MarqueeAnimation.Bouncy:
+                        switch (_marqueeDirection)
+                        {
+                            case MarqueeDirection.Right:
+                                if (_marqueePosition + _marqueeSpeed + _marqueeWidth + Padding.Horizontal
+                                    > Width)
+                                    _marqueeDirection = MarqueeDirection.Left;
+                                else
+                                    _marqueePosition += _marqueeSpeed;
+                                break;
+
+                            case MarqueeDirection.Left:
+                                if (_marqueePosition - _marqueeSpeed - Padding.Left
+                                    < 0)
+                                    _marqueeDirection = MarqueeDirection.Right;
+                                else
+                                    _marqueePosition -= _marqueeSpeed;
+                                break;
+                        }
+                        break;
+
+                    case MarqueeAnimation.Slide:
+                        if (_marqueePosition > Width)
+                            _marqueePosition = -_marqueeWidth;
+                        else
+                            _marqueePosition += _marqueeSpeed;
+                        break;
+                }
+                
+                Invalidate();
+            };
         }
 
         // Methods
@@ -234,50 +293,80 @@ namespace DDsControlCollection
             {
                 _style = value;
 
-                //TODO: Style
+                switch (value)
+                {
+                    case ProgressBarStyle.Blocks:
+                    case ProgressBarStyle.Continuous:
+                        {
+                            MarqueeTimer.Stop();
+                        }
+                        break;
+                    case ProgressBarStyle.Marquee:
+                        {
+                            _marqueePosition = Padding.Left;
+
+                            MarqueeTimer.Start();
+                        }
+                        break;
+                }
 
                 Invalidate();
             }
-        }
-
-        void ToggleStyle(ProgressBarStyle style)
-        {
-
         }
 
         // Events
 
         protected override void OnPaint(PaintEventArgs e)
         {
-            switch (_orientation)
+            switch (_style)
             {
-                case Orientation.Horizontal:
+                case ProgressBarStyle.Blocks:
                     {
-                        if (_invertOrientation)
-                            e.Graphics.FillRectangle(_foreColor,
-                                (Width - ((_value * Width) / _maximum)) + Padding.Left, Padding.Top,
-                                ((_value * Width) / _maximum) - Padding.Horizontal, Height - Padding.Vertical);
-                        else
-                            e.Graphics.FillRectangle(_foreColor,
-                                Padding.Left, Padding.Top,
-                                ((_value * Width) / _maximum) - Padding.Horizontal, Height - Padding.Vertical);
+
                     }
                     break;
-
-                case Orientation.Vertical:
+                case ProgressBarStyle.Continuous:
                     {
-                        if (_invertOrientation)
-                            e.Graphics.FillRectangle(_foreColor,
-                                Padding.Left, Padding.Top,
-                                Width - Padding.Horizontal, ((_value * Height) / _maximum) - Padding.Vertical);
-                        else
-                            e.Graphics.FillRectangle(_foreColor,
-                                Padding.Left, (Height - ((_value * Height) / _maximum)) + Padding.Top,
-                                Width - Padding.Horizontal, ((_value * Height) / _maximum) - Padding.Vertical);
+
+                        switch (_orientation)
+                        {
+                            case Orientation.Horizontal:
+                                {
+                                    if (_invertOrientation)
+                                        e.Graphics.FillRectangle(_foreColor,
+                                            (Width - ((_value * Width) / _maximum)) + Padding.Left, Padding.Top,
+                                            ((_value * Width) / _maximum) - Padding.Horizontal, Height - Padding.Vertical);
+                                    else
+                                        e.Graphics.FillRectangle(_foreColor,
+                                            Padding.Left, Padding.Top,
+                                            ((_value * Width) / _maximum) - Padding.Horizontal, Height - Padding.Vertical);
+                                }
+                                break;
+
+                            case Orientation.Vertical:
+                                {
+                                    if (_invertOrientation)
+                                        e.Graphics.FillRectangle(_foreColor,
+                                            Padding.Left, Padding.Top,
+                                            Width - Padding.Horizontal, ((_value * Height) / _maximum) - Padding.Vertical);
+                                    else
+                                        e.Graphics.FillRectangle(_foreColor,
+                                            Padding.Left, (Height - ((_value * Height) / _maximum)) + Padding.Top,
+                                            Width - Padding.Horizontal, ((_value * Height) / _maximum) - Padding.Vertical);
+                                }
+                                break;
+                        }
+                    }
+                    break;
+                case ProgressBarStyle.Marquee:
+                    {
+                        e.Graphics.FillRectangle(_foreColor,
+                            Padding.Left + _marqueePosition, Padding.Top,
+                            _marqueeWidth, Height - Padding.Vertical);
                     }
                     break;
             }
-
+            
             if (_textDisplay != BarTextDisplayType.None)
             {
                 switch (_textDisplay)

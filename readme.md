@@ -19,7 +19,7 @@ Feel free to post any issues or suggestions.
 | --- | --- | :-: | :-: | :-: |
 | SimpleProgressBar | `Control` | ✔️ |
 | SimpleClock | `Control` | ✔️ |
-| PrettyListBox | `Panel` | ️️❓ |
+| PrettyListBox | `Panel` | ️️✔️ |
 
 **Legend**
 
@@ -27,7 +27,9 @@ Feel free to post any issues or suggestions.
 
 ~ Yes, but with some issues
 
-❓ Testing needed
+🔃 Information needs to be refreshed
+
+❓ Unknown
 
 ❌ Not applicable
 
@@ -47,10 +49,13 @@ So far:
   - Custom font and size
   - Text color via `TextColor`
   - Text types via `TextDisplay`
-    - None (Hidden)
-    - Value on maximum (value / maximum)
-    - Pourcentage (NN%)
-    - User defined text
+    - `None` (Hidden)
+    - `ValueOnmaximum` Value / Maximum
+    - `Pourcentage` Number%
+    - `UserDefined`
+- Marquee style
+  - Bouncy
+  - Slide
 
 ## SimpleClock
 

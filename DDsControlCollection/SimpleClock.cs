@@ -7,14 +7,6 @@ using static System.Math;
 
 namespace DDsControlCollection
 {
-    public enum ClockStyle
-    {
-        Analog,
-        Numeric,
-        Binary,
-        Word
-    }
-
     public class SimpleClock : Control
     {
         public System.Timers.Timer ClockTimer { get; private set; }
@@ -32,6 +24,7 @@ namespace DDsControlCollection
                 _showSecondNeedle =
                 _showMinuteNeedle =
                 _showHourNeedle = true;
+
             Size = new Size(100, 100);
 
             ClockTimer = new System.Timers.Timer(1000);
@@ -40,18 +33,6 @@ namespace DDsControlCollection
                 Invalidate();
             };
             ClockTimer.Start();
-        }
-
-        ClockStyle _style;
-        public ClockStyle Style
-        {
-            get { return _style; }
-            set
-            {
-                _style = value;
-
-                Invalidate();
-            }
         }
 
         #region Analog
@@ -221,10 +202,6 @@ namespace DDsControlCollection
         }
         #endregion
 
-        #region Numeric
-
-        #endregion
-
         //TODO: TimeZoneOffset
 
         DateTime _time;
@@ -263,69 +240,61 @@ namespace DDsControlCollection
 
             if (ClockTimer.Enabled)
                 _time = DateTime.Now;
-
-            switch (_style)
-            {
-                case ClockStyle.Analog:
-                    {
-                        // Angles
-                        float sn = (_time.Second - 15) * 0.1047f;
-                        float mn = (_time.Minute - 15) * 0.1047f;
-                        float hn = (_time.Hour - 3) * 0.5235f;
-                        // Scaling (Radius)
-                        float rw = w * 0.4f;
-                        float rh = h * 0.4f;
-                        float rwh = w * 0.28f;
-                        float rhh = h * 0.28f;
-                        // Translation
-                        float tw = w / 2;
-                        float th = h / 2;
-
-                        // Frame
-                        if (_showFrame)
-                            e.Graphics.DrawEllipse(_framePen,
-                                w / 20, h / 20,
-                                w - (w / 10), h - (h / 10));
             
-                        // Seconds
-                        if (_showSecondNeedle)
-                            e.Graphics.DrawLine(_secondPen,
-                                tw, th,
-                                (float)(rw * Cos(sn) + tw),
-                                (float)(rh * Sin(sn) + th));
+            // Scaling (with Radius)
+            float rw = w * 0.4f;
+            float rh = h * 0.4f;
+            // Translation
+            float tw = w / 2;
+            float th = h / 2;
 
-                        // Minutes
-                        if (_showMinuteNeedle)
-                            e.Graphics.DrawLine(_minutePen,
-                                tw, th,
-                                (float)(rw * Cos(mn) + tw),
-                                (float)(rh * Sin(mn) + th));
+            // Frame
+            if (_showFrame)
+                e.Graphics.DrawEllipse(_framePen,
+                    w / 20, h / 20,
+                    w - (w / 10), h - (h / 10));
 
-                        // Hours
-                        if (_showHourNeedle)
-                            e.Graphics.DrawLine(_hourPen,
-                                tw, th,
-                                (float)(rwh * Cos(hn) + tw),
-                                (float)(rhh * Sin(hn) + th));
+            // Seconds
+            if (_showSecondNeedle)
+            {
+                float sn = (_time.Second - 15) * 0.1047f;
 
-                        // Middle point
-                        if (_showMiddlePoint)
-                            e.Graphics.FillEllipse(_middlePointBrush,
-                                tw - (w / 30), th - (h / 30),
-                                w / 15, h / 15);
-                    }
-                    break;
-                case ClockStyle.Numeric:
-                    {
-
-                    }
-                    break;
-                case ClockStyle.Binary:
-                    {
-
-                    }
-                    break;
+                e.Graphics.DrawLine(_secondPen,
+                    tw, th,
+                    (float)(rw * Cos(sn) + tw),
+                    (float)(rh * Sin(sn) + th));
             }
+
+            // Minutes
+            if (_showMinuteNeedle)
+            {
+                float mn = (_time.Minute - 15) * 0.1047f;
+
+                e.Graphics.DrawLine(_minutePen,
+                    tw, th,
+                    (float)(rw * Cos(mn) + tw),
+                    (float)(rh * Sin(mn) + th));
+            }
+
+            // Hours
+            if (_showHourNeedle)
+            {
+                float hn = (_time.Hour - 3) * 0.5235f;
+
+                float rwh = w * 0.28f;
+                float rhh = h * 0.28f;
+
+                e.Graphics.DrawLine(_hourPen,
+                    tw, th,
+                    (float)(rwh * Cos(hn) + tw),
+                    (float)(rhh * Sin(hn) + th));
+            }
+
+            // Middle point
+            if (_showMiddlePoint)
+                e.Graphics.FillEllipse(_middlePointBrush,
+                    tw - (w / 30), th - (h / 30),
+                    w / 15, h / 15);
         }
     }
 }

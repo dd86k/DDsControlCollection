@@ -12,9 +12,9 @@ namespace FancyProgressBar
             InitializeComponent();
 
             progressBar1.Style = ProgressBarStyle.Continuous; // Mono
-            progressBar1.ForeColor = Color.Red;
+            progressBar1.ForeColor = Color.Red; // Mono
 
-            simpleProgressBar1.TextDisplay = BarTextDisplayType.Pourcentage;
+            simpleProgressBar1.MarqueeAnimation = MarqueeAnimation.Slide;
 
             treeView1.Nodes.Add("test");
             treeView1.Nodes[0].Nodes.Add("child");
@@ -41,6 +41,19 @@ namespace FancyProgressBar
         {
             simpleProgressBar1.Value =
                   progressBar1.Value = 0;
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            if (simpleProgressBar1.Style == ProgressBarStyle.Continuous)
+                simpleProgressBar1.Style = ProgressBarStyle.Marquee;
+            else
+                simpleProgressBar1.Style = ProgressBarStyle.Continuous;
+
+            if (progressBar1.Style == ProgressBarStyle.Continuous)
+                progressBar1.Style = ProgressBarStyle.Marquee;
+            else
+                progressBar1.Style = ProgressBarStyle.Continuous;
         }
     }
 }

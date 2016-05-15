@@ -33,6 +33,7 @@
             this.button2 = new System.Windows.Forms.Button();
             this.treeView1 = new System.Windows.Forms.TreeView();
             this.listBox1 = new System.Windows.Forms.ListBox();
+            this.button3 = new System.Windows.Forms.Button();
             this.simpleClock1 = new DDsControlCollection.SimpleClock();
             this.prettyListBox2 = new DDsControlCollection.PrettyListBox();
             this.prettyTreeView1 = new DDsControlCollection.PrettyTreeView();
@@ -85,6 +86,16 @@
             this.listBox1.Size = new System.Drawing.Size(170, 95);
             this.listBox1.TabIndex = 9;
             // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(118, 12);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(64, 52);
+            this.button3.TabIndex = 12;
+            this.button3.Text = "Toggle marquee";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
             // simpleClock1
             // 
             this.simpleClock1.FrameColor = System.Drawing.Color.Black;
@@ -105,7 +116,6 @@
             this.simpleClock1.ShowSecondNeedle = true;
             this.simpleClock1.Size = new System.Drawing.Size(100, 100);
             this.simpleClock1.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
-            this.simpleClock1.Style = DDsControlCollection.ClockStyle.Analog;
             this.simpleClock1.TabIndex = 11;
             this.simpleClock1.Text = "simpleClock1";
             // 
@@ -146,7 +156,7 @@
             this.simpleProgressBar1.Name = "simpleProgressBar1";
             this.simpleProgressBar1.Padding = new System.Windows.Forms.Padding(2);
             this.simpleProgressBar1.Size = new System.Drawing.Size(100, 23);
-            this.simpleProgressBar1.Style = System.Windows.Forms.ProgressBarStyle.Blocks;
+            this.simpleProgressBar1.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
             this.simpleProgressBar1.TabIndex = 0;
             this.simpleProgressBar1.TextColor = System.Drawing.Color.Black;
             // 
@@ -155,6 +165,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(474, 426);
+            this.Controls.Add(this.button3);
             this.Controls.Add(this.simpleClock1);
             this.Controls.Add(this.prettyListBox2);
             this.Controls.Add(this.listBox1);
@@ -181,6 +192,7 @@
         private System.Windows.Forms.ListBox listBox1;
         private DDsControlCollection.PrettyListBox prettyListBox2;
         private DDsControlCollection.SimpleClock simpleClock1;
+        private System.Windows.Forms.Button button3;
     }
 }
 
