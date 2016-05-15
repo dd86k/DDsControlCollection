@@ -11,7 +11,7 @@ Mostly still in development!
 
 Feel free to post any issues or suggestions.
 
-The wiki is avaialable [here](https://github.com/guitarxhero/DDsControlCollection/wiki).
+The wiki is avaialable [here](wiki).
 
 [MIT License](License)
 
