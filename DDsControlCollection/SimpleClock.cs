@@ -25,14 +25,21 @@ namespace DDsControlCollection
                 _showMinuteNeedle =
                 _showHourNeedle = true;
 
+            DoubleBuffered = true;
+
             Size = new Size(100, 100);
 
+            // Timer
             ClockTimer = new System.Timers.Timer(1000);
             ClockTimer.Elapsed += (s, e) =>
             {
+                _time = DateTime.Now;
+
                 Invalidate();
             };
             ClockTimer.Start();
+
+            _time = DateTime.Now;
         }
 
         #region Analog
@@ -237,9 +244,6 @@ namespace DDsControlCollection
             e.Graphics.SmoothingMode = _smoothingMode;
             int w = Width;
             int h = Height;
-
-            if (ClockTimer.Enabled)
-                _time = DateTime.Now;
             
             // Scaling (with Radius)
             float rw = w * 0.4f;

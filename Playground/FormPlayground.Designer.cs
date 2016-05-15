@@ -149,7 +149,7 @@
             // 
             this.simpleProgressBar1.BackColor = System.Drawing.Color.WhiteSmoke;
             this.simpleProgressBar1.BarOrientation = System.Windows.Forms.Orientation.Horizontal;
-            this.simpleProgressBar1.BorderWidth = 1F;
+            this.simpleProgressBar1.BorderThickness = 1F;
             this.simpleProgressBar1.ForeColor = System.Drawing.Color.Green;
             this.simpleProgressBar1.InvertOrientation = false;
             this.simpleProgressBar1.Location = new System.Drawing.Point(12, 12);

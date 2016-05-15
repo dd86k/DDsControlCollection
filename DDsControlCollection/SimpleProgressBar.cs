@@ -5,7 +5,7 @@ using System.Windows.Forms;
 
 namespace DDsControlCollection
 {
-    public enum BarTextDisplayType
+    public enum ProgressBarTextStyles
     {
         None,
         ValueOnMaximum, // value / max
@@ -15,22 +15,23 @@ namespace DDsControlCollection
 
     public enum MarqueeAnimation
     {
-        Bouncy, Slide
+        Slide, Bouncy
     }
 
+    /// <summary>
+    /// Represent a simple ProgressBar.
+    /// </summary>
     public class SimpleProgressBar : Control
     {
-        // Marquee stuff
-        //TODO: maybe wrap this all in a class (non-static)
+        // Marquee
 
-        public System.Timers.Timer MarqueeTimer { get; private set; }
         enum MarqueeDirection { Right, Left, Up, Down }
         MarqueeDirection _marqueeDirection;
         int _marqueeWidth; // public
         int _marqueeSpeed; // public
         int _marqueePosition;
-        //TODO: MarqueeAnimationType (enum)
-        //TOPO: MarqueeAnimation (property) -> timer event
+
+        public System.Timers.Timer MarqueeTimer { get; private set; }
         public MarqueeAnimation MarqueeAnimation { get; set; }
 
         // Construct
@@ -38,9 +39,7 @@ namespace DDsControlCollection
         public SimpleProgressBar()
         {
             _maximum = 100;
-            _value = 0;
-            _textDisplay = BarTextDisplayType.None;
-            _font = new Font("Segoi UI", 12);
+            _font = new Font("Segoi UI", 10);
             _textColor = new SolidBrush(Color.Black);
             _borderPen = new Pen(Color.DarkGray, 1);
 
@@ -54,11 +53,10 @@ namespace DDsControlCollection
             DoubleBuffered = true;
 
             // Marquee stuff
-            _marqueeWidth = 40;
-            //_marqueePosition = 0;
-            _marqueeSpeed = 2;
+            _marqueeWidth = 50;
+            _marqueeSpeed = 4;
             _marqueeDirection = MarqueeDirection.Right;
-            MarqueeTimer = new System.Timers.Timer(25);
+            MarqueeTimer = new System.Timers.Timer(100);
             MarqueeTimer.Elapsed += (s, e) =>
             {
                 switch (MarqueeAnimation)
@@ -136,7 +134,7 @@ namespace DDsControlCollection
             }
         }
         [DefaultValue(1)]
-        public float BorderWidth
+        public float BorderThickness
         {
             get { return _borderPen.Width; }
             set
@@ -229,14 +227,14 @@ namespace DDsControlCollection
             }
         }
 
-        BarTextDisplayType _textDisplay;
-        [DefaultValue(BarTextDisplayType.None)]
-        public BarTextDisplayType TextDisplay
+        ProgressBarTextStyles _textStyle;
+        [DefaultValue(ProgressBarTextStyles.None)]
+        public ProgressBarTextStyles TextStyle
         {
-            get { return _textDisplay; }
+            get { return _textStyle; }
             set
             {
-                _textDisplay = value;
+                _textStyle = value;
 
                 Invalidate();
             }
@@ -251,9 +249,9 @@ namespace DDsControlCollection
                 _text = value;
 
                 if (string.IsNullOrWhiteSpace(_text))
-                    _textDisplay = BarTextDisplayType.None;
-                else if (_textDisplay != BarTextDisplayType.UserDefined)
-                    _textDisplay = BarTextDisplayType.UserDefined;
+                    _textStyle = ProgressBarTextStyles.None;
+                else if (_textStyle != ProgressBarTextStyles.UserDefined)
+                    _textStyle = ProgressBarTextStyles.UserDefined;
 
                 Invalidate();
             }
@@ -326,7 +324,15 @@ namespace DDsControlCollection
                         break;
                     case ProgressBarStyle.Marquee:
                         {
-                            _marqueePosition = Padding.Left;
+                            switch (MarqueeAnimation)
+                            {
+                                case MarqueeAnimation.Slide:
+                                    _marqueePosition = -_marqueeWidth;
+                                    break;
+                                case MarqueeAnimation.Bouncy:
+                                    _marqueePosition = Padding.Left;
+                                    break;
+                            }
 
                             MarqueeTimer.Start();
                         }
@@ -390,15 +396,15 @@ namespace DDsControlCollection
                     break;
             }
             
-            if (_textDisplay != BarTextDisplayType.None)
+            if (_textStyle != ProgressBarTextStyles.None)
             {
-                switch (_textDisplay)
+                switch (_textStyle)
                 {
-                    case BarTextDisplayType.ValueOnMaximum:
+                    case ProgressBarTextStyles.ValueOnMaximum:
                         _text = $"{_value} / {_maximum}";
                         break;
 
-                    case BarTextDisplayType.Pourcentage:
+                    case ProgressBarTextStyles.Pourcentage:
                         _text = (float)_value / _maximum * 100 + "%";
                         break;
                 }

@@ -13,8 +13,8 @@ namespace FancyProgressBar
 
             progressBar1.Style = ProgressBarStyle.Continuous; // Mono
             progressBar1.ForeColor = Color.Red; // Mono
-
-            simpleProgressBar1.MarqueeAnimation = MarqueeAnimation.Bouncy;
+            
+            simpleProgressBar1.TextStyle = ProgressBarTextStyles.ValueOnMaximum;
 
             treeView1.Nodes.Add("test");
             treeView1.Nodes[0].Nodes.Add("child");
