@@ -5,8 +5,7 @@ using System.Drawing.Drawing2D;
 using System.Windows.Forms;
 using static System.Math;
 
-//TODO: ClockBackgroundColor (Foreground)
-//TODO: ClockBackgroundImage (Foreground)
+//TODO: A better default image
 
 namespace DDsControlCollection
 {
@@ -21,13 +20,26 @@ namespace DDsControlCollection
             _minutePen =
                 _hourPen = new Pen(Color.Black, 3);
             _middlePointBrush = new SolidBrush(Color.Black);
-
+            _backgroundColorBrush = new SolidBrush(Color.Black);
+            _backgroundImageBrush =
+                new TextureBrush("DefaultClockBgImage.png".GetEmbeddedImage());
             _smoothingMode = SmoothingMode.AntiAlias;
+            _showBackgroundColor =
+                _showBackgroundImage =
+                false;
             _showFrame =
                 _showMiddlePoint =
                 _showSecondNeedle =
                 _showMinuteNeedle =
                 _showHourNeedle = true;
+
+            SizeChanged += (s, e) =>
+            {
+                _backgroundImageBrush =
+                    new TextureBrush(_backgroundImageBrush.Image.Resize(Size));
+
+                Invalidate();
+            };
 
             DoubleBuffered = true;
 
@@ -203,7 +215,6 @@ namespace DDsControlCollection
             set
             {
                 _middlePointBrush.Color = value;
-
                 Invalidate();
             }
         }
@@ -222,10 +233,62 @@ namespace DDsControlCollection
         #endregion
 
         #region Clock background image
+        TextureBrush _backgroundImageBrush;
+        public Image ClockBackgroundImage
+        {
+            get { return _backgroundImageBrush.Image; }
+            set
+            {
+                _backgroundImageBrush = new TextureBrush(value.Resize(Size));
+                
+                _showBackgroundImage = value != null;
 
+                Invalidate();
+            }
+        }
+
+        bool _showBackgroundImage;
+        public bool ShowBackgroundImage
+        {
+            get { return _showBackgroundImage; }
+            set
+            {
+                _showBackgroundImage = value;
+
+                Invalidate();
+            }
+        }
         #endregion
 
-        //TODO: TimeZoneOffset
+        #region Clock background color
+        SolidBrush _backgroundColorBrush;
+        public Color ClockBackgroundColor
+        {
+            get { return _backgroundColorBrush.Color; }
+            set
+            {
+                _backgroundColorBrush.Color = value;
+
+                _showBackgroundColor = value != null;
+
+                Invalidate();
+            }
+        }
+
+        bool _showBackgroundColor;
+        public bool ShowBackgroundColor
+        {
+            get { return _showBackgroundColor; }
+            set
+            {
+                _showBackgroundColor = value;
+
+                Invalidate();
+            }
+        }
+        #endregion
+
+        //TODO: HourOffset
 
         DateTime _time;
         [Browsable(false)]
@@ -267,6 +330,18 @@ namespace DDsControlCollection
             // Translation
             float tw = w / 2;
             float th = h / 2;
+
+            // Background color
+            if (_showBackgroundColor)
+                e.Graphics.FillEllipse(_backgroundColorBrush,
+                    w / 20, h / 20,
+                    w - (w / 10), h - (h / 10));
+
+            // Background image
+            if (_showBackgroundImage)
+                e.Graphics.FillEllipse(_backgroundImageBrush,
+                    w / 20, h / 20,
+                    w - (w / 10), h - (h / 10));
 
             // Frame
             if (_showFrame)

@@ -11,10 +11,10 @@ Usable controls so far.
 
 | Control | Based on | Works in .NET | Works in Mono | Progress |
 | --- | --- | :-: | :-: | --: |
-| SimpleProgressBar | `Control` | ✔️ | ✔️ | I think it's done!? - ~90% |
-| SimpleClock | `Control` | ✔️ | ✔️ | Still needs some properties - 80% |
+| SimpleProgressBar | `Control` | ✔️ | ✔️ | Tweaking - 90% |
+| SimpleClock | `Control` | ✔️ | ✔️ | Tweaking - 90% |
 | PrettyListBox | `Panel` | ️️✔️ | ✔️ | WIP - 40% |
-| PrettyTreeView | `Control` |  |  | WIP - 20% |
+| PrettyTreeView | `Control` |  |  | WIP - 10% |
 | SimpleTrackBar | `Control` |  |  | Not started - 0% |
 
 ## Information

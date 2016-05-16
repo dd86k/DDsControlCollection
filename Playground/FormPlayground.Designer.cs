@@ -28,17 +28,18 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormPlayground));
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.button3 = new System.Windows.Forms.Button();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.button4 = new System.Windows.Forms.Button();
+            this.button5 = new System.Windows.Forms.Button();
             this.simpleClock1 = new DDsControlCollection.SimpleClock();
             this.prettyListBox2 = new DDsControlCollection.PrettyListBox();
             this.simpleProgressBar1 = new DDsControlCollection.SimpleProgressBar();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // progressBar1
@@ -103,10 +104,34 @@
             this.comboBox1.TabIndex = 13;
             this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(12, 282);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(335, 23);
+            this.button4.TabIndex = 14;
+            this.button4.Text = "Set SelectedIndex = -1";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(12, 311);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(335, 23);
+            this.button5.TabIndex = 15;
+            this.button5.Text = "Add item";
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
+            // 
             // simpleClock1
             // 
-            this.simpleClock1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.simpleClock1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.simpleClock1.BackColor = System.Drawing.SystemColors.Control;
+            this.simpleClock1.ClockBackgroundColor = System.Drawing.Color.Black;
+            this.simpleClock1.ClockBackgroundImage = ((System.Drawing.Image)(resources.GetObject("simpleClock1.ClockBackgroundImage")));
             this.simpleClock1.FrameColor = System.Drawing.Color.Black;
             this.simpleClock1.FrameThickness = 4F;
             this.simpleClock1.HourNeedlePen = System.Drawing.Color.Black;
@@ -118,6 +143,8 @@
             this.simpleClock1.Name = "simpleClock1";
             this.simpleClock1.SecondNeedleColor = System.Drawing.Color.Red;
             this.simpleClock1.SecondNeedleThickness = 2F;
+            this.simpleClock1.ShowBackgroundColor = false;
+            this.simpleClock1.ShowBackgroundImage = false;
             this.simpleClock1.ShowFrame = true;
             this.simpleClock1.ShowHourNeedle = true;
             this.simpleClock1.ShowMiddlePoint = true;
@@ -160,26 +187,6 @@
             this.simpleProgressBar1.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
             this.simpleProgressBar1.TabIndex = 0;
             this.simpleProgressBar1.TextColor = System.Drawing.Color.Black;
-            // 
-            // button4
-            // 
-            this.button4.Location = new System.Drawing.Point(12, 282);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(335, 23);
-            this.button4.TabIndex = 14;
-            this.button4.Text = "Set SelectedIndex = -1";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
-            // 
-            // button5
-            // 
-            this.button5.Location = new System.Drawing.Point(12, 311);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(335, 23);
-            this.button5.TabIndex = 15;
-            this.button5.Text = "Add item";
-            this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
             // FormPlayground
             // 
