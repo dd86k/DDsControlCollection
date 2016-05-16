@@ -5,11 +5,11 @@ using System.Windows.Forms;
 
 namespace DDsControlCollection
 {
-    public enum ProgressBarTextStyles
+    public enum ProgressBarTextStyle
     {
         None,
-        ValueOnMaximum, // value / max
-        Pourcentage, // [n]nn[.Nn]%
+        ValueOnMaximum,
+        Pourcentage,
         UserDefined
     }
 
@@ -29,7 +29,7 @@ namespace DDsControlCollection
         MarqueeDirection _marqueeDirection;
         int _marqueeWidth; // public
         int _marqueeSpeed; // public
-        int _marqueePosition;
+        int _marqueePosition; // public?
 
         public System.Timers.Timer MarqueeTimer { get; private set; }
         public MarqueeAnimation MarqueeAnimation { get; set; }
@@ -42,10 +42,10 @@ namespace DDsControlCollection
             _font = new Font("Segoi UI", 10);
             _textColor = new SolidBrush(Color.Black);
             _borderPen = new Pen(Color.DarkGray, 1);
-
             _style = ProgressBarStyle.Continuous;
-            Padding = new Padding(2);
+
             Step = 10;
+            Padding = new Padding(2);
             Size = new Size(100, 23);
             ForeColor = Color.Green;
             BackColor = Color.WhiteSmoke;
@@ -54,8 +54,7 @@ namespace DDsControlCollection
 
             // Marquee stuff
             _marqueeWidth = 50;
-            _marqueeSpeed = 4;
-            _marqueeDirection = MarqueeDirection.Right;
+            _marqueeSpeed = 5;
             MarqueeTimer = new System.Timers.Timer(100);
             MarqueeTimer.Elapsed += (s, e) =>
             {
@@ -73,8 +72,8 @@ namespace DDsControlCollection
                                 break;
 
                             case MarqueeDirection.Left:
-                                if (_marqueePosition - _marqueeSpeed - Padding.Left
-                                    < 0)
+                                if (_marqueePosition - _marqueeSpeed
+                                    < Padding.Left)
                                     _marqueeDirection = MarqueeDirection.Right;
                                 else
                                     _marqueePosition -= _marqueeSpeed;
@@ -154,6 +153,7 @@ namespace DDsControlCollection
                 _foreColor = new SolidBrush(base.ForeColor = value);
             }
         }
+
         SolidBrush _backColor;
         public new Color BackColor
         {
@@ -227,9 +227,9 @@ namespace DDsControlCollection
             }
         }
 
-        ProgressBarTextStyles _textStyle;
-        [DefaultValue(ProgressBarTextStyles.None)]
-        public ProgressBarTextStyles TextStyle
+        ProgressBarTextStyle _textStyle;
+        [DefaultValue(ProgressBarTextStyle.None)]
+        public ProgressBarTextStyle TextStyle
         {
             get { return _textStyle; }
             set
@@ -249,9 +249,9 @@ namespace DDsControlCollection
                 _text = value;
 
                 if (string.IsNullOrWhiteSpace(_text))
-                    _textStyle = ProgressBarTextStyles.None;
-                else if (_textStyle != ProgressBarTextStyles.UserDefined)
-                    _textStyle = ProgressBarTextStyles.UserDefined;
+                    _textStyle = ProgressBarTextStyle.None;
+                else if (_textStyle != ProgressBarTextStyle.UserDefined)
+                    _textStyle = ProgressBarTextStyle.UserDefined;
 
                 Invalidate();
             }
@@ -396,15 +396,15 @@ namespace DDsControlCollection
                     break;
             }
             
-            if (_textStyle != ProgressBarTextStyles.None)
+            if (_textStyle != ProgressBarTextStyle.None)
             {
                 switch (_textStyle)
                 {
-                    case ProgressBarTextStyles.ValueOnMaximum:
+                    case ProgressBarTextStyle.ValueOnMaximum:
                         _text = $"{_value} / {_maximum}";
                         break;
 
-                    case ProgressBarTextStyles.Pourcentage:
+                    case ProgressBarTextStyle.Pourcentage:
                         _text = (float)_value / _maximum * 100 + "%";
                         break;
                 }

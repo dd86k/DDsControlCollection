@@ -14,15 +14,7 @@ namespace FancyProgressBar
             progressBar1.Style = ProgressBarStyle.Continuous; // Mono
             progressBar1.ForeColor = Color.Red; // Mono
             
-            simpleProgressBar1.TextStyle = ProgressBarTextStyles.ValueOnMaximum;
-
-            treeView1.Nodes.Add("test");
-            treeView1.Nodes[0].Nodes.Add("child");
-            treeView1.Nodes.Add("test1");
-            
-            prettyTreeView1.Nodes.Add("test");
-            prettyTreeView1.Nodes[0].Nodes.Add("child");
-            prettyTreeView1.Nodes.Add("test1");
+            simpleProgressBar1.TextStyle = ProgressBarTextStyle.ValueOnMaximum;
 
             listBox1.Items.Add("Item");
             listBox1.Items.Add("Selected");
@@ -54,6 +46,12 @@ namespace FancyProgressBar
                 progressBar1.Style = ProgressBarStyle.Marquee;
             else
                 progressBar1.Style = ProgressBarStyle.Continuous;
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            simpleProgressBar1.MarqueeAnimation =
+                (MarqueeAnimation)comboBox1.SelectedIndex;
         }
     }
 }

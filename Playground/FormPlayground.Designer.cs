@@ -31,17 +31,18 @@
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
-            this.treeView1 = new System.Windows.Forms.TreeView();
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.button3 = new System.Windows.Forms.Button();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.simpleClock1 = new DDsControlCollection.SimpleClock();
             this.prettyListBox2 = new DDsControlCollection.PrettyListBox();
-            this.prettyTreeView1 = new DDsControlCollection.PrettyTreeView();
             this.simpleProgressBar1 = new DDsControlCollection.SimpleProgressBar();
             this.SuspendLayout();
             // 
             // progressBar1
             // 
+            this.progressBar1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.progressBar1.Location = new System.Drawing.Point(12, 41);
             this.progressBar1.Name = "progressBar1";
             this.progressBar1.Size = new System.Drawing.Size(100, 23);
@@ -67,28 +68,18 @@
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
-            // treeView1
-            // 
-            this.treeView1.FullRowSelect = true;
-            this.treeView1.Location = new System.Drawing.Point(12, 142);
-            this.treeView1.Name = "treeView1";
-            this.treeView1.ShowLines = false;
-            this.treeView1.ShowPlusMinus = false;
-            this.treeView1.ShowRootLines = false;
-            this.treeView1.Size = new System.Drawing.Size(170, 119);
-            this.treeView1.TabIndex = 7;
-            // 
             // listBox1
             // 
             this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(12, 267);
+            this.listBox1.Location = new System.Drawing.Point(12, 181);
             this.listBox1.Name = "listBox1";
             this.listBox1.Size = new System.Drawing.Size(170, 95);
             this.listBox1.TabIndex = 9;
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(118, 12);
+            this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.button3.Location = new System.Drawing.Point(223, 12);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(64, 52);
             this.button3.TabIndex = 12;
@@ -96,8 +87,24 @@
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
+            // comboBox1
+            // 
+            this.comboBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
+            "Slide",
+            "Bounce"});
+            this.comboBox1.Location = new System.Drawing.Point(118, 13);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(99, 21);
+            this.comboBox1.TabIndex = 13;
+            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            // 
             // simpleClock1
             // 
+            this.simpleClock1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.simpleClock1.BackColor = System.Drawing.SystemColors.Control;
             this.simpleClock1.FrameColor = System.Drawing.Color.Black;
             this.simpleClock1.FrameWidth = 4F;
             this.simpleClock1.HourNeedlePen = System.Drawing.Color.Black;
@@ -125,7 +132,7 @@
             this.prettyListBox2.AutoScrollMinSize = new System.Drawing.Size(200, 205);
             this.prettyListBox2.BackColor = System.Drawing.Color.White;
             this.prettyListBox2.FocusColor = System.Drawing.Color.Coral;
-            this.prettyListBox2.Location = new System.Drawing.Point(188, 267);
+            this.prettyListBox2.Location = new System.Drawing.Point(188, 181);
             this.prettyListBox2.Name = "prettyListBox2";
             this.prettyListBox2.Size = new System.Drawing.Size(159, 95);
             this.prettyListBox2.TabIndex = 10;
@@ -133,26 +140,17 @@
             this.prettyListBox2.TextPaddingHorizontal = 2;
             this.prettyListBox2.TextPaddingVertical = 2;
             // 
-            // prettyTreeView1
-            // 
-            this.prettyTreeView1.BackColor = System.Drawing.Color.White;
-            this.prettyTreeView1.Location = new System.Drawing.Point(188, 142);
-            this.prettyTreeView1.Name = "prettyTreeView1";
-            this.prettyTreeView1.SelectedNode = null;
-            this.prettyTreeView1.Size = new System.Drawing.Size(159, 119);
-            this.prettyTreeView1.TabIndex = 8;
-            this.prettyTreeView1.Text = "prettyTreeView1";
-            this.prettyTreeView1.TextPaddingHorizontal = 2;
-            this.prettyTreeView1.TextPaddingVertical = 2;
-            // 
             // simpleProgressBar1
             // 
+            this.simpleProgressBar1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.simpleProgressBar1.BackColor = System.Drawing.Color.WhiteSmoke;
             this.simpleProgressBar1.BarOrientation = System.Windows.Forms.Orientation.Horizontal;
             this.simpleProgressBar1.BorderThickness = 1F;
             this.simpleProgressBar1.ForeColor = System.Drawing.Color.Green;
             this.simpleProgressBar1.InvertOrientation = false;
             this.simpleProgressBar1.Location = new System.Drawing.Point(12, 12);
+            this.simpleProgressBar1.MarqueeAnimation = DDsControlCollection.MarqueeAnimation.Slide;
             this.simpleProgressBar1.Name = "simpleProgressBar1";
             this.simpleProgressBar1.Padding = new System.Windows.Forms.Padding(2);
             this.simpleProgressBar1.Size = new System.Drawing.Size(100, 23);
@@ -165,12 +163,11 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(474, 426);
+            this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.simpleClock1);
             this.Controls.Add(this.prettyListBox2);
             this.Controls.Add(this.listBox1);
-            this.Controls.Add(this.prettyTreeView1);
-            this.Controls.Add(this.treeView1);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.progressBar1);
@@ -187,12 +184,11 @@
         private System.Windows.Forms.ProgressBar progressBar1;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.TreeView treeView1;
-        private DDsControlCollection.PrettyTreeView prettyTreeView1;
         private System.Windows.Forms.ListBox listBox1;
         private DDsControlCollection.PrettyListBox prettyListBox2;
         private DDsControlCollection.SimpleClock simpleClock1;
         private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.ComboBox comboBox1;
     }
 }
 
