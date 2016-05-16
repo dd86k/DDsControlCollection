@@ -39,16 +39,17 @@ namespace DDsControlCollection
         public SimpleProgressBar()
         {
             _maximum = 100;
-            _font = new Font("Segoi UI", 10);
-            _textColor = new SolidBrush(Color.Black);
+            _textBrush = new SolidBrush(Color.Black);
             _borderPen = new Pen(Color.DarkGray, 1);
             _style = ProgressBarStyle.Continuous;
 
             Step = 10;
+            Font = new Font("Segoi UI", 10);
             Padding = new Padding(2);
             Size = new Size(100, 23);
-            ForeColor = Color.Green;
-            BackColor = Color.WhiteSmoke;
+            _foreColorBrush = new SolidBrush(Color.LightGreen);
+            _backColorBrush = new SolidBrush(Color.WhiteSmoke);
+            _textBrush = new SolidBrush(Color.Black);
 
             DoubleBuffered = true;
 
@@ -64,17 +65,22 @@ namespace DDsControlCollection
                         switch (_marqueeDirection)
                         {
                             case MarqueeDirection.Right:
-                                if (_marqueePosition + _marqueeSpeed + _marqueeWidth + Padding.Horizontal
+                                if (_marqueePosition + _marqueeSpeed + _marqueeWidth
                                     > Width)
+                                {
                                     _marqueeDirection = MarqueeDirection.Left;
+                                    _marqueePosition -= _marqueeSpeed;
+                                }
                                 else
                                     _marqueePosition += _marqueeSpeed;
                                 break;
 
                             case MarqueeDirection.Left:
-                                if (_marqueePosition - _marqueeSpeed
-                                    < Padding.Left)
+                                if (_marqueePosition - _marqueeSpeed < Padding.Left)
+                                {
                                     _marqueeDirection = MarqueeDirection.Right;
+                                    _marqueePosition += _marqueeSpeed;
+                                }
                                 else
                                     _marqueePosition -= _marqueeSpeed;
                                 break;
@@ -144,23 +150,31 @@ namespace DDsControlCollection
             }
         }
 
-        SolidBrush _foreColor;
+        SolidBrush _foreColorBrush;
         public new Color ForeColor
         {
             get { return base.ForeColor; }
             set
             {
-                _foreColor = new SolidBrush(base.ForeColor = value);
+                _foreColorBrush.Color =
+                    base.ForeColor =
+                        value;
+
+                Invalidate();
             }
         }
 
-        SolidBrush _backColor;
+        SolidBrush _backColorBrush;
         public new Color BackColor
         {
             get { return base.BackColor; }
             set
             {
-                _backColor = new SolidBrush(base.BackColor = value);
+                _backColorBrush.Color =
+                    base.BackColor =
+                        value;
+
+                Invalidate();
             }
         }
 
@@ -214,19 +228,6 @@ namespace DDsControlCollection
             }
         }
 
-        Font _font;
-        [Description("Font to use when a BarTextDisplayType other than None is used.")]
-        public new Font Font
-        {
-            get { return _font; }
-            set
-            {
-                _font = value;
-
-                Invalidate();
-            }
-        }
-
         ProgressBarTextStyle _textStyle;
         [DefaultValue(ProgressBarTextStyle.None)]
         public ProgressBarTextStyle TextStyle
@@ -257,13 +258,13 @@ namespace DDsControlCollection
             }
         }
 
-        SolidBrush _textColor;
+        SolidBrush _textBrush;
         public Color TextColor
         {
-            get { return _textColor.Color; }
+            get { return _textBrush.Color; }
             set
             {
-                _textColor = new SolidBrush(value);
+                _textBrush.Color = value;
 
                 Invalidate();
             }
@@ -356,17 +357,16 @@ namespace DDsControlCollection
                     break;
                 case ProgressBarStyle.Continuous:
                     {
-
                         switch (_orientation)
                         {
                             case Orientation.Horizontal:
                                 {
                                     if (_invertOrientation)
-                                        e.Graphics.FillRectangle(_foreColor,
+                                        e.Graphics.FillRectangle(_foreColorBrush,
                                             (Width - ((_value * Width) / _maximum)) + Padding.Left, Padding.Top,
                                             ((_value * Width) / _maximum) - Padding.Horizontal, Height - Padding.Vertical);
                                     else
-                                        e.Graphics.FillRectangle(_foreColor,
+                                        e.Graphics.FillRectangle(_foreColorBrush,
                                             Padding.Left, Padding.Top,
                                             ((_value * Width) / _maximum) - Padding.Horizontal, Height - Padding.Vertical);
                                 }
@@ -375,11 +375,11 @@ namespace DDsControlCollection
                             case Orientation.Vertical:
                                 {
                                     if (_invertOrientation)
-                                        e.Graphics.FillRectangle(_foreColor,
+                                        e.Graphics.FillRectangle(_foreColorBrush,
                                             Padding.Left, Padding.Top,
                                             Width - Padding.Horizontal, ((_value * Height) / _maximum) - Padding.Vertical);
                                     else
-                                        e.Graphics.FillRectangle(_foreColor,
+                                        e.Graphics.FillRectangle(_foreColorBrush,
                                             Padding.Left, (Height - ((_value * Height) / _maximum)) + Padding.Top,
                                             Width - Padding.Horizontal, ((_value * Height) / _maximum) - Padding.Vertical);
                                 }
@@ -389,8 +389,8 @@ namespace DDsControlCollection
                     break;
                 case ProgressBarStyle.Marquee:
                     {
-                        e.Graphics.FillRectangle(_foreColor,
-                            Padding.Left + _marqueePosition, Padding.Top,
+                        e.Graphics.FillRectangle(_foreColorBrush,
+                            _marqueePosition, Padding.Top,
                             _marqueeWidth, Height - Padding.Vertical);
                     }
                     break;
@@ -409,10 +409,10 @@ namespace DDsControlCollection
                         break;
                 }
 
-                SizeF ts = e.Graphics.MeasureString(_text, _font);
+                SizeF ts = e.Graphics.MeasureString(_text, Font);
 
-                e.Graphics.DrawString(_text, _font,
-                    _textColor,
+                e.Graphics.DrawString(_text, Font,
+                    _textBrush,
                     (Width / 2) - (ts.Width / 2),
                     (Height / 2) - (ts.Height / 2));
             }
@@ -420,13 +420,17 @@ namespace DDsControlCollection
 
         protected override void OnPaintBackground(PaintEventArgs e)
         {
-            e.Graphics.FillRectangle(_backColor, e.ClipRectangle);
+            e.Graphics.FillRectangle(_backColorBrush, e.ClipRectangle);
 
             if (_borderPen.Width > 0)
             {
                 // Top
                 e.Graphics.DrawLine(_borderPen,
                     0, 0, Width, 0);
+
+                // Right
+                e.Graphics.DrawLine(_borderPen,
+                    Width - 1, 0, Width - 1, Height - 1);
 
                 // Bottom
                 e.Graphics.DrawLine(_borderPen,
@@ -435,10 +439,6 @@ namespace DDsControlCollection
                 // Left
                 e.Graphics.DrawLine(_borderPen,
                     0, 0, 0, Height);
-
-                // Right
-                e.Graphics.DrawLine(_borderPen,
-                    Width - 1, 0, Width - 1, Height - 1);
             }
         }
     }

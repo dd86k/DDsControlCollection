@@ -94,7 +94,7 @@
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Items.AddRange(new object[] {
             "Slide",
-            "Bounce"});
+            "Bouncy"});
             this.comboBox1.Location = new System.Drawing.Point(118, 13);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(99, 21);
@@ -147,6 +147,7 @@
             this.simpleProgressBar1.BackColor = System.Drawing.Color.WhiteSmoke;
             this.simpleProgressBar1.BarOrientation = System.Windows.Forms.Orientation.Horizontal;
             this.simpleProgressBar1.BorderThickness = 1F;
+            this.simpleProgressBar1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.simpleProgressBar1.ForeColor = System.Drawing.Color.Green;
             this.simpleProgressBar1.InvertOrientation = false;
             this.simpleProgressBar1.Location = new System.Drawing.Point(12, 12);
