@@ -35,9 +35,14 @@ namespace DDsControlCollection
 
             SizeChanged += (s, e) =>
             {
-                _backgroundImageBrush =
-                    new TextureBrush(_backgroundImageBrush.Image.Resize(Size));
+                if (_showBackgroundImage && Width > 0 && Height > 0)
+                {
+                    _backgroundImageBrush =
+                        new TextureBrush(_backgroundImageBrush.Image.Resize(Size));
 
+                    GC.Collect();
+                }
+                
                 Invalidate();
             };
 
