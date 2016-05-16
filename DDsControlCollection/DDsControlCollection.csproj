@@ -37,6 +37,7 @@
     <Reference Include="System.Windows.Forms" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="SimpleTrackBar.cs" />
     <Compile Include="Tools.cs" />
     <Compile Include="PrettyListBox.cs">
       <SubType>Component</SubType>

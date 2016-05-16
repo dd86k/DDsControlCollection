@@ -5,6 +5,9 @@ using System.Drawing.Drawing2D;
 using System.Windows.Forms;
 using static System.Math;
 
+//TODO: ClockBackgroundColor (Foreground)
+//TODO: ClockBackgroundImage (Foreground)
+
 namespace DDsControlCollection
 {
     public class SimpleClock : Control
@@ -18,6 +21,7 @@ namespace DDsControlCollection
             _minutePen =
                 _hourPen = new Pen(Color.Black, 3);
             _middlePointBrush = new SolidBrush(Color.Black);
+
             _smoothingMode = SmoothingMode.AntiAlias;
             _showFrame =
                 _showMiddlePoint =
@@ -42,7 +46,7 @@ namespace DDsControlCollection
             _time = DateTime.Now;
         }
 
-        #region Analog
+        #region Frame
         // Frame
         Pen _framePen;
         public Color FrameColor
@@ -55,7 +59,8 @@ namespace DDsControlCollection
                 Invalidate();
             }
         }
-        public float FrameWidth
+        [DefaultValue(4)]
+        public float FrameThickness
         {
             get { return _framePen.Width; }
             set
@@ -77,8 +82,9 @@ namespace DDsControlCollection
                 Invalidate();
             }
         }
+        #endregion
 
-        // Second needle
+        #region Second needle
         Pen _secondPen;
         public Color SecondNeedleColor
         {
@@ -90,7 +96,8 @@ namespace DDsControlCollection
                 Invalidate();
             }
         }
-        public float SecondNeedleWidth
+        [DefaultValue(2)]
+        public float SecondNeedleThickness
         {
             get { return _secondPen.Width; }
             set
@@ -112,8 +119,9 @@ namespace DDsControlCollection
                 Invalidate();
             }
         }
+        #endregion
 
-        // Minute needle
+        #region Minute needle
         Pen _minutePen;
         public Color MinuteNeedleColor
         {
@@ -125,7 +133,8 @@ namespace DDsControlCollection
                 Invalidate();
             }
         }
-        public float MinuteNeedleWidth
+        [DefaultValue(3)]
+        public float MinuteNeedleThickness
         {
             get { return _minutePen.Width; }
             set
@@ -147,8 +156,9 @@ namespace DDsControlCollection
                 Invalidate();
             }
         }
+        #endregion
 
-        // Hour needle
+        #region Hour needle
         Pen _hourPen;
         public Color HourNeedlePen
         {
@@ -160,7 +170,8 @@ namespace DDsControlCollection
                 Invalidate();
             }
         }
-        public float HourNeedleWidth
+        [DefaultValue(3)]
+        public float HourNeedleThickness
         {
             get { return _hourPen.Width; }
             set
@@ -182,15 +193,16 @@ namespace DDsControlCollection
                 Invalidate();
             }
         }
+        #endregion
 
-        // Middle point
+        #region Middle point
         SolidBrush _middlePointBrush;
         public Color MiddlePointColor
         {
             get { return _middlePointBrush.Color; }
             set
             {
-                _middlePointBrush = new SolidBrush(value);
+                _middlePointBrush.Color = value;
 
                 Invalidate();
             }
@@ -207,6 +219,10 @@ namespace DDsControlCollection
                 Invalidate();
             }
         }
+        #endregion
+
+        #region Clock background image
+
         #endregion
 
         //TODO: TimeZoneOffset
@@ -261,7 +277,7 @@ namespace DDsControlCollection
             // Seconds
             if (_showSecondNeedle)
             {
-                float sn = (_time.Second - 15) * 0.1047f;
+                float sn = (_time.Second - 15) * 0.10471975511965977461542144610932f;
 
                 e.Graphics.DrawLine(_secondPen,
                     tw, th,
@@ -272,7 +288,7 @@ namespace DDsControlCollection
             // Minutes
             if (_showMinuteNeedle)
             {
-                float mn = (_time.Minute - 15) * 0.1047f;
+                float mn = (_time.Minute - 15) * 0.10471975511965977461542144610932f;
 
                 e.Graphics.DrawLine(_minutePen,
                     tw, th,
@@ -283,7 +299,7 @@ namespace DDsControlCollection
             // Hours
             if (_showHourNeedle)
             {
-                float hn = (_time.Hour - 3) * 0.5235f;
+                float hn = (_time.Hour - 3) * 0.52359877559829887307710723054658f;
 
                 float rwh = w * 0.28f;
                 float rhh = h * 0.28f;

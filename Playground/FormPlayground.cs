@@ -18,9 +18,13 @@ namespace FancyProgressBar
 
             listBox1.Items.Add("Item");
             listBox1.Items.Add("Selected");
+
+            listBox1.SelectedItem = "Item";
             
             prettyListBox2.Items.Add("Item");
             prettyListBox2.Items.Add("Selected");
+
+            prettyListBox2.SelectedItem = "Item";
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -52,6 +56,19 @@ namespace FancyProgressBar
         {
             simpleProgressBar1.MarqueeAnimation =
                 (MarqueeAnimation)comboBox1.SelectedIndex;
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            listBox1.SelectedIndex =
+                prettyListBox2.SelectedIndex = -1;
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            listBox1.Items.Add("Item");
+
+            prettyListBox2.Items.Add("Item");
         }
     }
 }

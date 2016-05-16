@@ -3,10 +3,28 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
 
+//TODO: DisplayMember
+//TODO: ValueMember
+//TODO: Override Add to invalidate
+
 namespace DDsControlCollection
 {
     public class PrettyListBox : Panel
     {
+        /*
+        public class ListBoxObjectCollection : ListBox.ObjectCollection
+        {
+            public ListBoxObjectCollection(ListBox owner) : base(owner) { }
+            public ListBoxObjectCollection(ListBox owner, ListBox.ObjectCollection value) : base(owner, value) { }
+            public ListBoxObjectCollection(ListBox owner, object[] value) : base(owner, value) { }
+
+            public virtual new int Add(object item)
+            {
+                return base.Add(item);
+            }
+        }
+        */
+
         public PrettyListBox()
         {
             _foreColor = new SolidBrush(Color.Black);
@@ -15,12 +33,14 @@ namespace DDsControlCollection
             _textPaddingHorizontal = 2;
             _index = -1;
 
-            AutoScroll = true;
-            AutoScrollMinSize = new Size(200, 205);
-            VerticalScroll.Enabled = false;
-            Size = new Size(200, 300);
-            BackColor = Color.White;
             Items = new ListBox.ObjectCollection(new ListBox());
+            HorizontalScroll.Enabled = HorizontalScroll.Visible = false;
+            Size = new Size(200, 300);
+            AutoScroll = true;
+            AutoScrollMinSize = Size;
+            BackColor = Color.White;
+
+            
         }
 
         int _textHeight;
@@ -91,9 +111,12 @@ namespace DDsControlCollection
                         throw new IndexOutOfRangeException();
 
                     if (value == -1)
+                    {
                         _index = -1;
-
-                    _selectedItem = Items[_index = value];
+                        _selectedItem = null;
+                    }
+                    else
+                        _selectedItem = Items[_index = value];
 
                     Invalidate();
                 }

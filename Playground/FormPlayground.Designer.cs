@@ -37,6 +37,8 @@
             this.simpleClock1 = new DDsControlCollection.SimpleClock();
             this.prettyListBox2 = new DDsControlCollection.PrettyListBox();
             this.simpleProgressBar1 = new DDsControlCollection.SimpleProgressBar();
+            this.button4 = new System.Windows.Forms.Button();
+            this.button5 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // progressBar1
@@ -106,16 +108,16 @@
             this.simpleClock1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.simpleClock1.BackColor = System.Drawing.SystemColors.Control;
             this.simpleClock1.FrameColor = System.Drawing.Color.Black;
-            this.simpleClock1.FrameWidth = 4F;
+            this.simpleClock1.FrameThickness = 4F;
             this.simpleClock1.HourNeedlePen = System.Drawing.Color.Black;
-            this.simpleClock1.HourNeedleWidth = 3F;
+            this.simpleClock1.HourNeedleThickness = 3F;
             this.simpleClock1.Location = new System.Drawing.Point(362, 12);
             this.simpleClock1.MiddlePointColor = System.Drawing.Color.Black;
             this.simpleClock1.MinuteNeedleColor = System.Drawing.Color.Black;
-            this.simpleClock1.MinuteNeedleWidth = 3F;
+            this.simpleClock1.MinuteNeedleThickness = 3F;
             this.simpleClock1.Name = "simpleClock1";
             this.simpleClock1.SecondNeedleColor = System.Drawing.Color.Red;
-            this.simpleClock1.SecondNeedleWidth = 2F;
+            this.simpleClock1.SecondNeedleThickness = 2F;
             this.simpleClock1.ShowFrame = true;
             this.simpleClock1.ShowHourNeedle = true;
             this.simpleClock1.ShowMiddlePoint = true;
@@ -159,11 +161,33 @@
             this.simpleProgressBar1.TabIndex = 0;
             this.simpleProgressBar1.TextColor = System.Drawing.Color.Black;
             // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(12, 282);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(335, 23);
+            this.button4.TabIndex = 14;
+            this.button4.Text = "Set SelectedIndex = -1";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(12, 311);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(335, 23);
+            this.button5.TabIndex = 15;
+            this.button5.Text = "Add item";
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
+            // 
             // FormPlayground
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(474, 426);
+            this.Controls.Add(this.button5);
+            this.Controls.Add(this.button4);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.simpleClock1);
@@ -190,6 +214,8 @@
         private DDsControlCollection.SimpleClock simpleClock1;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button button5;
     }
 }
 

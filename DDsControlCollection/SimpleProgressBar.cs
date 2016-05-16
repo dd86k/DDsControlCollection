@@ -3,6 +3,9 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
 
+//TODO: ForegroundBorderRadius (bar)
+//TODO: BackgroundBorderRadius (bar's bg) Enum with unit?
+
 namespace DDsControlCollection
 {
     public enum ProgressBarTextStyle
@@ -25,11 +28,28 @@ namespace DDsControlCollection
     {
         // Marquee
 
-        enum MarqueeDirection { Right, Left, Up, Down }
+        enum MarqueeDirection : byte { Right, Left, Up, Down }
         MarqueeDirection _marqueeDirection;
-        int _marqueeWidth; // public
-        int _marqueeSpeed; // public
-        int _marqueePosition; // public?
+
+        [DefaultValue(50)]
+        public int MarqueeWidth { get; set; }
+
+        [DefaultValue(5)]
+        public int MarqueeSpeed { get; set; }
+
+        int _marqueePosition;
+        [ReadOnly(true)]
+        [Browsable(false)]
+        public int MarqueePosition
+        {
+            get { return _marqueePosition; }
+            set
+            {
+                _marqueePosition = value;
+
+                Invalidate();
+            }
+        }
 
         public System.Timers.Timer MarqueeTimer { get; private set; }
         public MarqueeAnimation MarqueeAnimation { get; set; }
@@ -42,20 +62,21 @@ namespace DDsControlCollection
             _textBrush = new SolidBrush(Color.Black);
             _borderPen = new Pen(Color.DarkGray, 1);
             _style = ProgressBarStyle.Continuous;
+            _foreColorBrush = new SolidBrush(Color.LightGreen);
+            _backColorBrush = new SolidBrush(Color.WhiteSmoke);
+            _textBrush = new SolidBrush(Color.Black);
 
             Step = 10;
             Font = new Font("Segoi UI", 10);
             Padding = new Padding(2);
             Size = new Size(100, 23);
-            _foreColorBrush = new SolidBrush(Color.LightGreen);
-            _backColorBrush = new SolidBrush(Color.WhiteSmoke);
-            _textBrush = new SolidBrush(Color.Black);
+            SizeChanged += (s, e) => { Invalidate(); };
 
             DoubleBuffered = true;
 
             // Marquee stuff
-            _marqueeWidth = 50;
-            _marqueeSpeed = 5;
+            MarqueeWidth = 50;
+            MarqueeSpeed = 5;
             MarqueeTimer = new System.Timers.Timer(100);
             MarqueeTimer.Elapsed += (s, e) =>
             {
@@ -65,33 +86,33 @@ namespace DDsControlCollection
                         switch (_marqueeDirection)
                         {
                             case MarqueeDirection.Right:
-                                if (_marqueePosition + _marqueeSpeed + _marqueeWidth
+                                if (_marqueePosition + MarqueeSpeed + MarqueeWidth
                                     > Width)
                                 {
                                     _marqueeDirection = MarqueeDirection.Left;
-                                    _marqueePosition -= _marqueeSpeed;
+                                    _marqueePosition -= MarqueeSpeed;
                                 }
                                 else
-                                    _marqueePosition += _marqueeSpeed;
+                                    _marqueePosition += MarqueeSpeed;
                                 break;
 
                             case MarqueeDirection.Left:
-                                if (_marqueePosition - _marqueeSpeed < Padding.Left)
+                                if (_marqueePosition - MarqueeSpeed < Padding.Left)
                                 {
                                     _marqueeDirection = MarqueeDirection.Right;
-                                    _marqueePosition += _marqueeSpeed;
+                                    _marqueePosition += MarqueeSpeed;
                                 }
                                 else
-                                    _marqueePosition -= _marqueeSpeed;
+                                    _marqueePosition -= MarqueeSpeed;
                                 break;
                         }
                         break;
 
                     case MarqueeAnimation.Slide:
                         if (_marqueePosition > Width)
-                            _marqueePosition = -_marqueeWidth;
+                            _marqueePosition = -MarqueeWidth;
                         else
-                            _marqueePosition += _marqueeSpeed;
+                            _marqueePosition += MarqueeSpeed;
                         break;
                 }
                 
@@ -100,7 +121,7 @@ namespace DDsControlCollection
         }
 
         // Methods
-        
+
         public void PerformStep()
         {
             if (_style != ProgressBarStyle.Marquee)
@@ -328,7 +349,7 @@ namespace DDsControlCollection
                             switch (MarqueeAnimation)
                             {
                                 case MarqueeAnimation.Slide:
-                                    _marqueePosition = -_marqueeWidth;
+                                    _marqueePosition = -MarqueeWidth;
                                     break;
                                 case MarqueeAnimation.Bouncy:
                                     _marqueePosition = Padding.Left;
@@ -391,7 +412,7 @@ namespace DDsControlCollection
                     {
                         e.Graphics.FillRectangle(_foreColorBrush,
                             _marqueePosition, Padding.Top,
-                            _marqueeWidth, Height - Padding.Vertical);
+                            MarqueeWidth, Height - Padding.Vertical);
                     }
                     break;
             }

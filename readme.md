@@ -1,40 +1,28 @@
 # DDsControlCollection
 ## Collection of controls for Windows.Forms
 
-A bunch of WinForm controls that I'll be doing here and then.
+## Goal
 
-I started this because I wanted a bit more from `ProgressBar`, and I disliked how `ProgressBar` behaved (in Windows).
+My goal is to provide a collection of simple, yet personnalizable controls, with updated styles, compatible with some of their related siblings.
 
-Also I plan to use those in my future projects.
+## Controls
+
+Usable controls so far.
+
+| Control | Based on | Works in .NET | Works in Mono | Progress |
+| --- | --- | :-: | :-: | --: |
+| SimpleProgressBar | `Control` | ✔️ | ✔️ | I think it's done!? - ~90% |
+| SimpleClock | `Control` | ✔️ | ✔️ | Still needs some properties - 80% |
+| PrettyListBox | `Panel` | ️️✔️ | ✔️ | WIP - 40% |
+| PrettyTreeView | `Control` |  |  | WIP - 20% |
+| SimpleTrackBar | `Control` |  |  | Not started - 0% |
+
+## Information
 
 Mostly still in development!
 
 Feel free to post any issues or suggestions.
 
-The wiki is avaialable [here](https://github.com/guitarxhero/DDsControlCollection/wiki).
+The wiki contains information about the controls, and is available [here](https://github.com/guitarxhero/DDsControlCollection/wiki).
 
 [MIT License](License)
-
-## Controls
-
-Usable controls.
-
-| Control | Based on | Works in Mono |
-| --- | --- | :-: | :-: | :-: |
-| SimpleProgressBar | `Control` | ✔️ |
-| SimpleClock | `Control` | ✔️ |
-| PrettyListBox | `Panel` | ️️✔️ |
-
-**Legend**
-
-✔️ Yes
-
-~ Yes, but with some issues
-
-🔃 Information needs to be refreshed
-
-❓ Unknown
-
-❌ Not applicable
-
-(empty) Not available yet
