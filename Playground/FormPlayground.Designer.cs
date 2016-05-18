@@ -40,6 +40,8 @@
             this.simpleClock1 = new DDsControlCollection.SimpleClock();
             this.prettyListBox2 = new DDsControlCollection.PrettyListBox();
             this.simpleProgressBar1 = new DDsControlCollection.SimpleProgressBar();
+            this.trackBar1 = new System.Windows.Forms.TrackBar();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
             this.SuspendLayout();
             // 
             // progressBar1
@@ -74,7 +76,7 @@
             // listBox1
             // 
             this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(12, 181);
+            this.listBox1.Location = new System.Drawing.Point(12, 261);
             this.listBox1.Name = "listBox1";
             this.listBox1.Size = new System.Drawing.Size(170, 95);
             this.listBox1.TabIndex = 9;
@@ -106,7 +108,7 @@
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(12, 282);
+            this.button4.Location = new System.Drawing.Point(12, 362);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(335, 23);
             this.button4.TabIndex = 14;
@@ -116,7 +118,7 @@
             // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(12, 311);
+            this.button5.Location = new System.Drawing.Point(12, 391);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(335, 23);
             this.button5.TabIndex = 15;
@@ -161,7 +163,7 @@
             this.prettyListBox2.AutoScrollMinSize = new System.Drawing.Size(200, 205);
             this.prettyListBox2.BackColor = System.Drawing.Color.White;
             this.prettyListBox2.FocusColor = System.Drawing.Color.Coral;
-            this.prettyListBox2.Location = new System.Drawing.Point(188, 181);
+            this.prettyListBox2.Location = new System.Drawing.Point(188, 261);
             this.prettyListBox2.Name = "prettyListBox2";
             this.prettyListBox2.Size = new System.Drawing.Size(159, 95);
             this.prettyListBox2.TabIndex = 10;
@@ -188,11 +190,19 @@
             this.simpleProgressBar1.TabIndex = 0;
             this.simpleProgressBar1.TextColor = System.Drawing.Color.Black;
             // 
+            // trackBar1
+            // 
+            this.trackBar1.Location = new System.Drawing.Point(12, 128);
+            this.trackBar1.Name = "trackBar1";
+            this.trackBar1.Size = new System.Drawing.Size(104, 45);
+            this.trackBar1.TabIndex = 16;
+            // 
             // FormPlayground
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(474, 426);
+            this.Controls.Add(this.trackBar1);
             this.Controls.Add(this.button5);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.comboBox1);
@@ -206,7 +216,9 @@
             this.Controls.Add(this.simpleProgressBar1);
             this.Name = "FormPlayground";
             this.Text = "Form1";
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -223,6 +235,7 @@
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.TrackBar trackBar1;
     }
 }
 

@@ -13,7 +13,7 @@ My goal is to provide a collection of simple, yet personnalizable controls, with
 | SimpleClock | `Control` | ✔️ | ✔️ | Tweaking - 90% |
 | PrettyListBox | `Panel` | ️️✔️ | ✔️ | WIP - 40% |
 | PrettyTreeView | `Control` |  |  | WIP - 10% |
-| SimpleTrackBar | `Control` |  |  | Not started - 0% |
+| SimpleTrackBar | `Control` |  |  | WIP - 5% |
 | ProgressTextBox | `TextBox` |  |  | Not started - 0% |
 
 ## Information

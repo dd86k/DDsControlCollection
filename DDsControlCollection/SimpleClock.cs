@@ -5,8 +5,6 @@ using System.Drawing.Drawing2D;
 using System.Windows.Forms;
 using static System.Math;
 
-//TODO: A better default image
-
 namespace DDsControlCollection
 {
     public class SimpleClock : Control
@@ -39,7 +37,7 @@ namespace DDsControlCollection
                     _backgroundImageBrush =
                         new TextureBrush(_backgroundImage.Resize(Size));
 
-                    GC.Collect();
+                    GC.Collect(2);
                 
                     Invalidate();
                 }
@@ -306,7 +304,7 @@ namespace DDsControlCollection
             {
                 _time = value;
 
-                ClockTimer.Enabled = false;
+                ClockTimer.Stop();
 
                 Invalidate();
             }
