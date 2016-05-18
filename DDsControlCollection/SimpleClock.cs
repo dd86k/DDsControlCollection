@@ -25,8 +25,7 @@ namespace DDsControlCollection
                 new TextureBrush("DefaultClockBgImage.png".GetEmbeddedImage());
             _smoothingMode = SmoothingMode.AntiAlias;
             _showBackgroundColor =
-                _showBackgroundImage =
-                false;
+                _showBackgroundImage = false;
             _showFrame =
                 _showMiddlePoint =
                 _showSecondNeedle =
@@ -38,12 +37,12 @@ namespace DDsControlCollection
                 if (_showBackgroundImage && Width > 0 && Height > 0)
                 {
                     _backgroundImageBrush =
-                        new TextureBrush(_backgroundImageBrush.Image.Resize(Size));
+                        new TextureBrush(_backgroundImage.Resize(Size));
 
                     GC.Collect();
-                }
                 
-                Invalidate();
+                    Invalidate();
+                }
             };
 
             DoubleBuffered = true;
@@ -239,12 +238,14 @@ namespace DDsControlCollection
 
         #region Clock background image
         TextureBrush _backgroundImageBrush;
+        Image _backgroundImage;
         public Image ClockBackgroundImage
         {
-            get { return _backgroundImageBrush.Image; }
+            get { return _backgroundImage; }
             set
             {
-                _backgroundImageBrush = new TextureBrush(value.Resize(Size));
+                _backgroundImageBrush =
+                    new TextureBrush(_backgroundImage = value.Resize(Size));
                 
                 _showBackgroundImage = value != null;
 

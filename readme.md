@@ -7,8 +7,6 @@ My goal is to provide a collection of simple, yet personnalizable controls, with
 
 ## Controls
 
-Usable controls so far.
-
 | Control | Based on | Works in .NET | Works in Mono | Progress |
 | --- | --- | :-: | :-: | --: |
 | SimpleProgressBar | `Control` | ✔️ | ✔️ | Tweaking - 90% |
@@ -16,6 +14,7 @@ Usable controls so far.
 | PrettyListBox | `Panel` | ️️✔️ | ✔️ | WIP - 40% |
 | PrettyTreeView | `Control` |  |  | WIP - 10% |
 | SimpleTrackBar | `Control` |  |  | Not started - 0% |
+| ProgressTextBox | `TextBox` |  |  | Not started - 0% |
 
 ## Information
 
