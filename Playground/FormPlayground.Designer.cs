@@ -41,6 +41,7 @@
             this.prettyListBox2 = new DDsControlCollection.PrettyListBox();
             this.simpleProgressBar1 = new DDsControlCollection.SimpleProgressBar();
             this.trackBar1 = new System.Windows.Forms.TrackBar();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -197,11 +198,21 @@
             this.trackBar1.Size = new System.Drawing.Size(104, 45);
             this.trackBar1.TabIndex = 16;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(122, 137);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(13, 13);
+            this.label1.TabIndex = 17;
+            this.label1.Text = "0";
+            // 
             // FormPlayground
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(474, 426);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.trackBar1);
             this.Controls.Add(this.button5);
             this.Controls.Add(this.button4);
@@ -236,6 +247,7 @@
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.TrackBar trackBar1;
+        private System.Windows.Forms.Label label1;
     }
 }
 

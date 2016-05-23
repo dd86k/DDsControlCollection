@@ -16,8 +16,9 @@ namespace FancyProgressBar
             
             simpleProgressBar1.TextStyle = ProgressBarTextStyle.ValueOnMaximum;
 
-            simpleClock1.ShowBackgroundImage = true;
+            //simpleClock1.ShowBackgroundImage = true;
             //simpleClock1.ClockBackgroundImage = Image.FromFile("1462332400379-1.png");
+            simpleClock1.ClockBackgroundColor = Color.Coral;
 
             listBox1.Items.Add("Item");
             listBox1.Items.Add("Selected");

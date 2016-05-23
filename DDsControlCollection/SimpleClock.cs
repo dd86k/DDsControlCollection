@@ -86,6 +86,7 @@ namespace DDsControlCollection
         }
 
         bool _showFrame;
+        [DefaultValue(true)]
         public bool ShowFrame
         {
             get { return _showFrame; }
@@ -123,6 +124,7 @@ namespace DDsControlCollection
         }
 
         bool _showSecondNeedle;
+        [DefaultValue(true)]
         public bool ShowSecondNeedle
         {
             get { return _showSecondNeedle; }
@@ -160,6 +162,7 @@ namespace DDsControlCollection
         }
 
         bool _showMinuteNeedle;
+        [DefaultValue(true)]
         public bool ShowMinuteNeedle
         {
             get { return _showMinuteNeedle; }
@@ -197,6 +200,7 @@ namespace DDsControlCollection
         }
 
         bool _showHourNeedle;
+        [DefaultValue(true)]
         public bool ShowHourNeedle
         {
             get { return _showHourNeedle; }
@@ -222,6 +226,7 @@ namespace DDsControlCollection
         }
 
         bool _showMiddlePoint;
+        [DefaultValue(true)]
         public bool ShowMiddlePoint
         {
             get { return _showMiddlePoint; }
@@ -252,6 +257,7 @@ namespace DDsControlCollection
         }
 
         bool _showBackgroundImage;
+        [DefaultValue(false)]
         public bool ShowBackgroundImage
         {
             get { return _showBackgroundImage; }
@@ -280,6 +286,7 @@ namespace DDsControlCollection
         }
 
         bool _showBackgroundColor;
+        [DefaultValue(false)]
         public bool ShowBackgroundColor
         {
             get { return _showBackgroundColor; }
