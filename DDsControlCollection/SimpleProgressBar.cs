@@ -21,6 +21,11 @@ namespace DDsControlCollection
         Slide, Bouncy
     }
 
+    public enum TextAlign
+    {
+        Left, Center, Right
+    }
+
     /// <summary>
     /// Represent a simple ProgressBar.
     /// </summary>
@@ -365,6 +370,19 @@ namespace DDsControlCollection
             }
         }
 
+        TextAlign _textAlign;
+        [DefaultValue(TextAlign.Center)]
+        public TextAlign TextAlign
+        {
+            get { return _textAlign; }
+            set
+            {
+                _textAlign = value;
+
+                Invalidate();
+            }
+        }
+
         // Events
 
         protected override void OnPaint(PaintEventArgs e)
@@ -373,7 +391,7 @@ namespace DDsControlCollection
             {
                 case ProgressBarStyle.Blocks:
                     {
-
+                        //TODO: ProgressBarStyle.Blocks rendering
                     }
                     break;
                 case ProgressBarStyle.Continuous:
@@ -432,10 +450,29 @@ namespace DDsControlCollection
 
                 SizeF ts = e.Graphics.MeasureString(_text, Font);
 
-                e.Graphics.DrawString(_text, Font,
-                    _textBrush,
-                    (Width / 2) - (ts.Width / 2),
-                    (Height / 2) - (ts.Height / 2));
+                switch (_textAlign)
+                {
+                    case TextAlign.Left:
+                        e.Graphics.DrawString(_text, Font,
+                            _textBrush,
+                            Padding.Left * 2,
+                            (Height / 2) - (ts.Height / 2));
+                        break;
+
+                    case TextAlign.Center:
+                        e.Graphics.DrawString(_text, Font,
+                            _textBrush,
+                            (Width / 2) - (ts.Width / 2),
+                            (Height / 2) - (ts.Height / 2));
+                        break;
+
+                    case TextAlign.Right:
+                        e.Graphics.DrawString(_text, Font,
+                            _textBrush,
+                            Width - ts.Width - (Padding.Right * 2),
+                            (Height / 2) - (ts.Height / 2));
+                        break;
+                }
             }
         }
 
@@ -445,21 +482,8 @@ namespace DDsControlCollection
 
             if (_borderPen.Width > 0)
             {
-                // Top
-                e.Graphics.DrawLine(_borderPen,
-                    0, 0, Width, 0);
-
-                // Right
-                e.Graphics.DrawLine(_borderPen,
-                    Width - 1, 0, Width - 1, Height - 1);
-
-                // Bottom
-                e.Graphics.DrawLine(_borderPen,
-                    0, Height - 1, Width - 1, Height - 1);
-
-                // Left
-                e.Graphics.DrawLine(_borderPen,
-                    0, 0, 0, Height);
+                e.Graphics.DrawRectangle(_borderPen,
+                    0, 0, Width - 1, Height - 1);
             }
         }
     }
