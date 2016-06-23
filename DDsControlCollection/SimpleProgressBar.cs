@@ -204,9 +204,9 @@ namespace DDsControlCollection
             }
         }
 
-        int _maximum;
+        long _maximum;
         [DefaultValue(100)]
-        public int Maximum
+        public long Maximum
         {
             get { return _maximum; }
             set
@@ -220,9 +220,9 @@ namespace DDsControlCollection
             }
         }
 
-        int _minimum;
+        long _minimum;
         [DefaultValue(0)]
-        public int Minimum
+        public long Minimum
         {
             get { return _minimum; }
             set
@@ -236,9 +236,9 @@ namespace DDsControlCollection
             }
         }
 
-        int _value;
+        long _value;
         [DefaultValue(0)]
-        public int Value
+        public long Value
         {
             get { return _value; }
             set
@@ -387,53 +387,54 @@ namespace DDsControlCollection
 
         protected override void OnPaint(PaintEventArgs e)
         {
-            switch (_style)
-            {
-                case ProgressBarStyle.Blocks:
-                    {
-                        //TODO: ProgressBarStyle.Blocks rendering
-                    }
-                    break;
-                case ProgressBarStyle.Continuous:
-                    {
-                        switch (_orientation)
+            if (_value > 0)
+                switch (_style)
+                {
+                    case ProgressBarStyle.Blocks:
                         {
-                            case Orientation.Horizontal:
-                                {
-                                    if (_invertOrientation)
-                                        e.Graphics.FillRectangle(_foreColorBrush,
-                                            (Width - ((_value * Width) / _maximum)) + Padding.Left, Padding.Top,
-                                            ((_value * Width) / _maximum) - Padding.Horizontal, Height - Padding.Vertical);
-                                    else
-                                        e.Graphics.FillRectangle(_foreColorBrush,
-                                            Padding.Left, Padding.Top,
-                                            ((_value * Width) / _maximum) - Padding.Horizontal, Height - Padding.Vertical);
-                                }
-                                break;
-
-                            case Orientation.Vertical:
-                                {
-                                    if (_invertOrientation)
-                                        e.Graphics.FillRectangle(_foreColorBrush,
-                                            Padding.Left, Padding.Top,
-                                            Width - Padding.Horizontal, ((_value * Height) / _maximum) - Padding.Vertical);
-                                    else
-                                        e.Graphics.FillRectangle(_foreColorBrush,
-                                            Padding.Left, (Height - ((_value * Height) / _maximum)) + Padding.Top,
-                                            Width - Padding.Horizontal, ((_value * Height) / _maximum) - Padding.Vertical);
-                                }
-                                break;
+                            //TODO: ProgressBarStyle.Blocks rendering
                         }
-                    }
-                    break;
-                case ProgressBarStyle.Marquee:
-                    {
-                        e.Graphics.FillRectangle(_foreColorBrush,
-                            _marqueePosition, Padding.Top,
-                            MarqueeWidth, Height - Padding.Vertical);
-                    }
-                    break;
-            }
+                        break;
+                    case ProgressBarStyle.Continuous:
+                        {
+                            switch (_orientation)
+                            {
+                                case Orientation.Horizontal:
+                                    {
+                                        if (_invertOrientation)
+                                            e.Graphics.FillRectangle(_foreColorBrush,
+                                                (Width - ((_value * Width) / _maximum)) + Padding.Left, Padding.Top,
+                                                ((_value * Width) / _maximum) - Padding.Horizontal, Height - Padding.Vertical);
+                                        else
+                                            e.Graphics.FillRectangle(_foreColorBrush,
+                                                Padding.Left, Padding.Top,
+                                                ((_value * Width) / _maximum) - Padding.Horizontal, Height - Padding.Vertical);
+                                    }
+                                    break;
+
+                                case Orientation.Vertical:
+                                    {
+                                        if (_invertOrientation)
+                                            e.Graphics.FillRectangle(_foreColorBrush,
+                                                Padding.Left, Padding.Top,
+                                                Width - Padding.Horizontal, ((_value * Height) / _maximum) - Padding.Vertical);
+                                        else
+                                            e.Graphics.FillRectangle(_foreColorBrush,
+                                                Padding.Left, (Height - ((_value * Height) / _maximum)) + Padding.Top,
+                                                Width - Padding.Horizontal, ((_value * Height) / _maximum) - Padding.Vertical);
+                                    }
+                                    break;
+                            }
+                        }
+                        break;
+                    case ProgressBarStyle.Marquee:
+                        {
+                            e.Graphics.FillRectangle(_foreColorBrush,
+                                _marqueePosition, Padding.Top,
+                                MarqueeWidth, Height - Padding.Vertical);
+                        }
+                        break;
+                }
             
             if (_textStyle != ProgressBarTextStyle.None)
             {
